@@ -1,6 +1,6 @@
 # Flix Fabrika
 
-Flix Toys'un fabrika oyunu (sürüm 1.5). Hindi çiftliğinden FLIX üret, test et, paketle, sat; fabrikanı büyüt.
+Flix Toys'un fabrika oyunu (sürüm 1.9). Hindi çiftliğinden FLIX üret, test et, paketle, sat; fabrikanı büyüt.
 
 **Oyna:** https://kaanimamoglu27.github.io/Flix-Fabrika/
 
