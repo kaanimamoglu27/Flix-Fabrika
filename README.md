@@ -8,7 +8,13 @@ Flix Toys'un fabrika oyunu (sürüm 2.0). Hindi çiftliğinden FLIX üret, test 
 - `kaynak/` kaynak dosyalar (`python3 build.py` ile derlenir)
 - `app/` iOS uygulaması (Capacitor 8, com.flixtoys.fabrika)
 
-Not: Bu sürümde Ayarlar → 🧪 Endgame test modu herkese açık; App Store öncesi gizlenecek.
+Not: 🧪 Endgame test modu yalnızca web'de (Pages/artifact) görünür; iOS uygulamasında tamamen kapalı (2.0.1).
+
+## 2.0.1 (2026-11-11): App Store hazırlığı
+
+- Endgame test modu iOS uygulamasında kapalı: düğme görünmez, eski test kaydı açılmaz (web'de Kaan'ın testi için duruyor).
+- Takip izni (ATT) metni Türkçe + İngilizce.
+- Uygulamada zaten olanlar: satın alımları geri yükle düğmesi, Yasal Bilgiler ve Hakkında, reklamsız paket geçiş reklamlarını kapatır, ödüllü reklamlar isteğe bağlı, şifreleme beyanı (ITSAppUsesNonExemptEncryption = NO), yalnızca iPhone ve dikey.
 
 ## 2.0 (2026-11-11)
 
