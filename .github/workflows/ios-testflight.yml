@@ -42,6 +42,11 @@ jobs:
             if [ -z "${!var}" ]; then echo "::error::Missing secret: $var"; exit 1; fi
           done
       - name: Install and prepare iOS
+        env:
+          ADMOB_APP_ID: ${{ secrets.FABRIKA_ADMOB_APP_ID }}
+          ADMOB_REWARDED_ID: ${{ secrets.FABRIKA_ADMOB_REWARDED_ID }}
+          ADMOB_INTERSTITIAL_ID: ${{ secrets.FABRIKA_ADMOB_INTERSTITIAL_ID }}
+          ADMOB_BANNER_ID: ${{ secrets.FABRIKA_ADMOB_BANNER_ID }}
         run: |
           npm ci
           npm run build
