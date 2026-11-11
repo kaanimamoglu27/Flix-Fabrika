@@ -7,6 +7,8 @@ export const COLS = {
   kirmizi: { n: 'Kırmızı', f: '#e8301c', b: '#7a0d05', body: 0xb01a0c, wing: 0xe22511, v: 26 },
   mor: { n: 'Mor', f: '#9a5cf0', b: '#3e1d80', body: 0x6236b0, wing: 0x8a4fe0, v: 38 },
   altin: { n: 'Altın', f: '#ffd34a', b: '#a8740a', body: 0xd4a020, wing: 0xffcf3a, v: 60, metal: true },
+  elmas: { n: 'Elmas', f: '#7fe9ff', b: '#1b7f9e', body: 0x3fb8d8, wing: 0x9ff0ff, v: 90, metal: true },
+  gokkusagi: { n: 'Gökkuşağı', f: '#ff5ad1', b: '#5a2bb0', body: 0xd23aa8, wing: 0x39d0c8, v: 135 },
 };
 // Yerdeki satın alma alanları. req: önce açılması gereken alan ('tut' = eğitim bitti).
 export const PADS = [
@@ -19,6 +21,7 @@ export const PADS = [
   { id: 'bina', name: 'Fabrika binası', cost: 135, fx: 'Duvarlar yükselir · çiftlik kapısı', x: 2.6, z: -4.0, req: 'pres', big: true },
   { id: 'ciftlik0', name: 'Hindi çiftliği', cost: 180, fx: '4 hindi · tüy sandığı', x: 0.0, z: -5.6, req: 'bina', big: true },
   { id: 'park', name: 'Oyun parkı', cost: 210, fx: '3 çocuk FLIX test eder', x: 8.6, z: 0.8, req: 'ciftlik0', big: true },
+  { id: 'sahne', name: 'Şov sahnesi', cost: 160, fx: 'Sektirme şovu: kalabalık para atar', x: 8.8, z: 6.6, req: 'park', big: true },
   { id: 'ofis', name: 'Ofis', cost: 255, fx: 'Geliştirmeler açılır', x: 7.6, z: -3.2, req: 'park' },
   { id: 'mavi', name: 'Mavi hindi', cost: 225, fx: 'FLIX değeri 5 → 8', x: -6.8, z: -11.2, req: 'ciftlik0', col: 'mavi' },
   { id: 'ik', name: 'İşe alım', cost: 315, fx: 'Eleman al, iş yürüsün', x: -8.2, z: 1.5, req: 'ofis' },
@@ -29,9 +32,10 @@ export const PADS = [
   { id: 'bant', name: 'Tüy bandı', cost: 500, fx: 'Tüy ve taban masaya akar', x: -4.4, z: -6.0, req: 'asm2' },
   { id: 'genis', name: 'Yeni salon', cost: 350, fx: '+%10 satış · +1 müşteri', x: 11.9, z: 0.5, req: 'yesil', big: true },
   { id: 'kamyon', name: 'Kamyon', cost: 500, fx: 'Toplu satış 1,5 kat', x: 22.6, z: 15.8, req: 'genis' },
+  { id: 'misir', name: 'Mısır ambarı', cost: 600, fx: 'Hindileri besle: tüy 2 kat hızlı', x: 11.6, z: -11.4, req: 'genis' },
   { id: 'sari', name: 'Sarı hindi', cost: 700, fx: 'FLIX değeri 18', x: 3.2, z: -10.9, req: 'yesil', col: 'sari' },
   { id: 'top', name: 'FLIX Top hattı', cost: 1000, fx: 'Yeni ürün: FLIX Top', x: 18.5, z: -4.5, req: 'kamyon' },
-  { id: 'kasa3', name: '3. Kasa', cost: 1200, fx: 'Müşteri +%50', x: 13.6, z: 14.0, req: 'genis', big: true },
+  { id: 'kasa3', name: '3. Kasa', cost: 1200, fx: 'Müşteri +%50', x: 12.4, z: 14.0, req: 'genis', big: true },
   { id: 'suru', name: 'Hindi sürüsü', cost: 1350, fx: '+6 hindi · 2 kat tüy', x: 17.0, z: -12.5, req: 'genis' },
   { id: 'pelus', name: 'Peluş atölyesi', cost: 1650, fx: 'Yeni ürün: Peluş FLIX', x: 17.5, z: 7.2, req: 'genis' },
   { id: 'robot', name: 'Tüy toplayıcı', cost: 550, fx: '2 robot tüy toplar', x: -8.4, z: -15.0, req: 'mavi' },
@@ -40,7 +44,7 @@ export const PADS = [
   { id: 'kirmizi', name: 'Kırmızı hindi', cost: 3000, fx: 'FLIX değeri 26', x: -3.2, z: -14.2, req: 'sari', col: 'kirmizi' },
   { id: 'ciftlik', name: 'Büyük çiftlik', cost: 3500, fx: '+8 hindi · 2. tüy sandığı', x: 1.0, z: -18.0, req: 'sari', big: true },
   { id: 'hediye', name: 'Hediye paketi', cost: 4250, fx: '3 FLIX = 1,6 kat set', x: 18.5, z: 2.5, req: 'top' },
-  { id: 'kasa4', name: '4. Kasa', cost: 5500, fx: 'Müşteri +%33', x: 19.2, z: 14.0, req: 'kasa3', big: true },
+  { id: 'kasa4', name: '4. Kasa', cost: 5500, fx: 'Müşteri +%33', x: 19.8, z: 14.0, req: 'kasa3', big: true },
   { id: 'bblok', name: 'B Blok', cost: 6000, fx: 'Fabrika sola büyür', x: -9.2, z: 12.4, req: 'ciftlik', big: true },
   { id: 'asm4', name: '4. Montaj', cost: 8500, fx: 'Üretim +%33', x: -17.5, z: 3.0, req: 'bblok' },
   { id: 'pres2', name: '2. Pres', cost: 9500, fx: 'Taban üretimi 2 katı', x: -19.0, z: -3.8, req: 'bblok' },
@@ -48,6 +52,17 @@ export const PADS = [
   { id: 'kasa5', name: '5. Kasa', cost: 12000, fx: 'Müşteri +%25', x: -17.5, z: 14.0, req: 'bblok', big: true },
   { id: 'robot2', name: 'Robot garajı', cost: 18000, fx: '+3 robot · hızlı toplama', x: -18.5, z: -12.0, req: 'pres2' },
   { id: 'altin', name: 'Altın hindi', cost: 15000, fx: 'FLIX değeri 60', x: 3.2, z: -14.2, req: 'mor', col: 'altin' },
+  // ---- 2. bölüm: C Blok FLIX Mağazası ve yeni hindiler ----
+  { id: 'cblok', name: 'C Blok', cost: 130000, fx: 'FLIX Mağazası açılır · alan sağa büyür', x: 23.0, z: 5.0, req: 'kasa5', big: true },
+  { id: 'kasa6', name: '6. Kasa', cost: 180000, fx: 'Mağaza kasası · müşteri +%20', x: 29.5, z: 14.0, req: 'cblok', big: true },
+  { id: 'elmas', name: 'Elmas hindi', cost: 240000, fx: 'FLIX değeri 90', x: -5.2, z: -15.4, req: 'altin', col: 'elmas' },
+  { id: 'muze', name: 'FLIX Müzesi', cost: 300000, fx: 'Tüm satışlar +%15', x: 33.0, z: -3.0, req: 'cblok', big: true },
+  { id: 'asm5', name: '5. Montaj', cost: 375000, fx: 'Üretim +%25', x: 29.0, z: 3.0, req: 'kasa6' },
+  { id: 'tren', name: 'Oyuncak treni', cost: 435000, fx: 'Mağazada tur atar · müşteri +%15', x: 37.0, z: 9.0, req: 'asm5' },
+  { id: 'stadyum', name: 'Şov stadyumu', cost: 500000, fx: 'Şovda 2 kat para · daha büyük coşku', x: 12.4, z: 7.0, req: 'muze', big: true },
+  { id: 'kasa7', name: '7. Kasa', cost: 600000, fx: 'Müşteri +%15', x: 36.2, z: 14.0, req: 'asm5', big: true },
+  { id: 'gokkusagi', name: 'Gökkuşağı hindi', cost: 780000, fx: 'FLIX değeri 135', x: 2.0, z: -20.0, req: 'elmas', col: 'gokkusagi' },
+  { id: 'anit', name: 'Dev FLIX Anıtı', cost: 1120000, fx: 'Tüm satışlar +%25 · büyük kutlama', x: 34.0, z: 6.5, req: 'gokkusagi', big: true },
 ];
 // Ürünler (satış fiyatı ₺). FLIX'in fiyatı tüy rengine göre (COLS.v), hediye paketi = içindeki 3 FLIX x 1,6
 export const PROD = { top: 30, giftMult: 1.6, truckMult: 1.5, plushMult: 0.6, keyMult: 0.5 };
@@ -72,7 +87,7 @@ export const spdPct = (l) => Math.round(l <= 6 ? l * 12 : 72 + (l - 6) * 6);
 // İşe alım (para)
 export const STAFF = [
   { id: 'tas', name: 'Taşıyıcı', icon: '🧑‍🏭', desc: 'Tüy ve taban taşır, FLIX’leri tezgâha dizer', costs: [150, 700, 2600, 8000, 15000, 26000, 42000, 65000], max: 8 },
-  { id: 'kas', name: 'Kasiyer', icon: '🧾', desc: 'Her kasaya bir kasiyer: satış 3 kat hızlı', costs: [250, 900, 2500, 6000, 12000], max: 5 },
+  { id: 'kas', name: 'Kasiyer', icon: '🧾', desc: 'Her kasaya bir kasiyer: satış 3 kat hızlı', costs: [250, 900, 2500, 6000, 12000, 22000, 34000], max: 7 },
 ];
 export const SUPS = [
   { id: 'wspd', name: 'Eleman hızı', icon: '⚡', max: 8, base: 120, mult: 1.9, desc: (l) => '+' + (l * 12) + '% hız' },
