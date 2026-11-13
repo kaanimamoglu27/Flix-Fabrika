@@ -8,7 +8,7 @@ src = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else app.parent / 'index.ht
 s = src.read_text()
 tag = '<script>window.FLIX_LOGO='
 if s.count(tag) != 1: sys.exit('game logo script not found (the app scripts go right before it)')
-s = s.replace(tag, '<script src="ads-config.js"></script><script src="ads.js"></script><script src="native-bridge.js"></script>' + tag)
+s = s.replace(tag, '<script src="ads-config.js"></script><script src="ads.js"></script><script src="native-bridge.js"></script><script src="flix-privacy.js"></script>' + tag)
 left = re.findall(r'(?:src|href)="(https?://[^"]+)"', s)
 if left: sys.exit('external resources still referenced: %s' % left)
 (app / 'www' / 'index.html').write_text(s)
