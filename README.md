@@ -1,6 +1,6 @@
 # Flix Fabrika
 
-Flix Toys'un fabrika oyunu (sürüm 2.0). Hindi çiftliğinden FLIX üret, test et, paketle, sat; fabrikanı büyüt.
+Flix Toys'un fabrika oyunu (sürüm 2.1). Hindi çiftliğinden FLIX üret, test et, paketle, sat; fabrikanı büyüt.
 
 **Oyna:** https://kaanimamoglu27.github.io/Flix-Fabrika/
 
@@ -9,6 +9,14 @@ Flix Toys'un fabrika oyunu (sürüm 2.0). Hindi çiftliğinden FLIX üret, test 
 - `app/` iOS uygulaması (Capacitor 8, com.flixtoys.fabrika)
 
 Not: 🧪 Endgame test modu yalnızca web'de (Pages/artifact) görünür; iOS uygulamasında tamamen kapalı (2.0.1).
+
+## 2.1 (2026-11-13): yeni istasyonlar ve oynanış
+
+- **Boya atölyesi** (5.000, Peluş atölyesinden sonra): test edilmiş FLIX'i halkaya bırak, altın şeritli boyalı FLIX çıkar, 1,5 kat değerli. Elemanlar da kullanır.
+- **Kargo dronu** (22.000, Robot garajından sonra): istasyonlardan ve tezgahlardan FLIX toplayıp 1,3 kat fiyata satar, parayı pistine bırakır.
+- **Altın tüy avı:** 2,5-4 dakikada bir haritada ışık sütunlu altın tüy belirir (1 dakika kalır). Üstünden geç: sıradaki bölümün fiyatının %12'si kadar para, bazen 1-2 elmas.
+- Performans: mantık adımı ve bellek 2.0 ile aynı seviyede, görsellere dokunulmadı.
+- Bot ölçümü: orta 299 dk, kolay 308 dk (5 saatin üstünde), ~50 geçiş reklamı.
 
 ## 2.0.1 (2026-11-11): App Store hazırlığı
 
