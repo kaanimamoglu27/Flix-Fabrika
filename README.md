@@ -1,6 +1,6 @@
 # Flix Fabrika
 
-Flix Toys'un fabrika oyunu (sürüm 2.1). Hindi çiftliğinden FLIX üret, test et, paketle, sat; fabrikanı büyüt.
+Flix Toys'un fabrika oyunu (sürüm 2.2, yatay). Hindi çiftliğinden FLIX üret, test et, paketle, sat; fabrikanı büyüt.
 
 **Oyna:** https://kaanimamoglu27.github.io/Flix-Fabrika/
 
@@ -9,6 +9,12 @@ Flix Toys'un fabrika oyunu (sürüm 2.1). Hindi çiftliğinden FLIX üret, test 
 - `app/` iOS uygulaması (Capacitor 8, com.flixtoys.fabrika)
 
 Not: 🧪 Endgame test modu yalnızca web'de (Pages/artifact) görünür; iOS uygulamasında tamamen kapalı (2.0.1).
+
+## 2.2 (2026-11-13): yatay oyun
+- Oyun artık yatay oynanır. Telefon dik tutulursa oyun kendini yataya döndürür (ARKANA'daki sistem); ters görünürse menüdeki "⟲ Ters mi? Çevir" butonu, ayrıca cihaz hareketiyle otomatik çevirme.
+- Yatay düzen: ana menü iki sütun (solda logo, sağda istatistik/Oyna/kartlar), ofis/ayarlar/nasıl oynanır panelleri sağda yan panel, HUD ve butonlar sağ alt, kamera yataya göre ayarlı. Joystick dönmüş ekranda doğru yönde.
+- iOS uygulaması sadece yatay (LandscapeLeft/Right, `app/tools/ios_setup.py`).
+- App Store görselleri yatay yeniden çekildi: `app/store/appstore/iphone_6.9_2796x1290` ve `iphone_6.5_2688x1242`, TR/EN 8'er adet, kırmızı FLIX logosu.
 
 ## 2.1 (2026-11-13): yeni istasyonlar ve oynanış
 
