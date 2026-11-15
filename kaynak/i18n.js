@@ -65,7 +65,7 @@ const EN = {
   // shop
   '100 Elmas': '100 Gems', '300 Elmas': '300 Gems', '800 Elmas': '800 Gems', '2000 Elmas': '2000 Gems', 'Başlangıç Paketi': 'Starter Pack', '150 elmas + ₺2.000 + Altın FLIX kostümü': '150 gems + ₺2,000 + Golden FLIX outfit',
   'Reklamsız': 'No Ads', 'Ara reklamlar kalkar, ödüllü reklamlar isteğe bağlı kalır': 'Removes interstitials, rewarded ads stay optional', 'VIP Fabrika': 'VIP Factory', 'Tüm satışlar kalıcı 2 kat + reklamsız': 'All sales permanently x2 + no ads',
-  'Neon yörüngede kaç, rekor kır!': 'Dodge in the neon orbit, set a record!', "FLIX’i düşürmeden sektir!": 'Keep the FLIX up!',
+  'Neon yörüngede kaç, rekor kır!': 'Dodge in the neon orbit, set a record!', "FLIX’i düşürmeden sektir!": 'Keep the FLIX up!', 'Futbol bilgini online düelloda göster!': 'Prove your football knowledge in online duels!',
   // colours & cosmetics
   'Doğal': 'Natural', 'Mavi': 'Blue', 'Yeşil': 'Green', 'Sarı': 'Yellow', 'Kırmızı': 'Red', 'Mor': 'Purple', 'Altın': 'Golden', 'Karışık': 'Mixed', 'Karışık renkler': 'Mixed colours',
   'Altın FLIX': 'Golden FLIX', 'Kırmızı FLIX': 'Red FLIX', 'FLIX kırmızısı': 'FLIX red', 'FLIX sarı-mavi': 'FLIX yellow-blue', 'Ejder Yeşili': 'Dragon Green', 'Gece Altını': 'Night Gold', 'Gökkuşağı': 'Rainbow', 'Gün Batımı': 'Sunset',

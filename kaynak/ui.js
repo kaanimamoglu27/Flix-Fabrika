@@ -191,7 +191,7 @@ export function initUI() {
   $('#mmEnd').onclick = () => openPanel('menu');
   $('#bFlip').onclick = () => { SFX.click(); flipRot(); };
   document.querySelectorAll('#mm [data-p]').forEach(b => b.onclick = () => { SFX.unlock(); openPanel(b.dataset.p); });
-  $('#mmPromo').innerHTML = PROMO.map(p => `<button data-g="${p.id}" style="background:${p.bg}"><img src="${window['AD_' + p.id.toUpperCase()] || ''}" alt=""><span><b>${p.name}</b><small>${p.id === 'rush' ? 'App Store' : 'Oyna'}</small></span></button>`).join('');
+  $('#mmPromo').innerHTML = PROMO.map(p => `<button data-g="${p.id}" style="background:${p.bg}"><img src="${window['AD_' + p.id.toUpperCase()] || ''}" alt=""><span><b>${p.name}</b><small>${p.url.includes('apps.apple.com') ? 'App Store' : 'Oyna'}</small></span></button>`).join('');
   document.querySelectorAll('#mmPromo [data-g]').forEach(b => b.onclick = () => openPromo(PROMO.find(p => p.id === b.dataset.g)));
   showMenu(true);
   window.__fabGrant = grant; if (window.FlixNative && window.FlixNative.flush) setTimeout(() => window.FlixNative.flush(), 0);
