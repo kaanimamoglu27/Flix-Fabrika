@@ -67,7 +67,14 @@ elif any(env_units.values()):
     print('WARNING: ios/App/App/public/ads-config.js not found, run npx cap sync ios first')
 pbx = ios / 'App.xcodeproj' / 'project.pbxproj'
 s = pbx.read_text()
-s = s.replace('TARGETED_DEVICE_FAMILY = "1,2";', 'TARGETED_DEVICE_FAMILY = 1;')
+# iPhone only: every TARGETED_DEVICE_FAMILY becomes 1 (quoted or not); the build stops if any iPad family is left,
+# because Apple then reviews the app on iPad as an iPad app (FLIX Kick Up was rejected for that, Guideline 4).
+s, device_family_count = re.subn(r'TARGETED_DEVICE_FAMILY\s*=\s*(?:"[^"]*"|[^;]*);', 'TARGETED_DEVICE_FAMILY = 1;', s)
+if device_family_count == 0:
+    raise RuntimeError('No TARGETED_DEVICE_FAMILY build setting found in project.pbxproj')
+if any(v.strip().strip('"') != '1' for v in re.findall(r'TARGETED_DEVICE_FAMILY\s*=\s*([^;]+);', s)):
+    raise RuntimeError('iPhone-only device family validation failed')
+print('Validated iPhone-only TARGETED_DEVICE_FAMILY for', device_family_count, 'Xcode build configurations')
 if os.environ.get('BUILD_NUMBER'): s = re.sub(r'CURRENT_PROJECT_VERSION = [^;]+;', 'CURRENT_PROJECT_VERSION = %s;' % os.environ['BUILD_NUMBER'], s)
 if os.environ.get('APP_VERSION'): s = re.sub(r'MARKETING_VERSION = [^;]+;', 'MARKETING_VERSION = %s;' % os.environ['APP_VERSION'], s)
 pbx.write_text(s)
