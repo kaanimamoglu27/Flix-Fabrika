@@ -6,7 +6,7 @@ on:
       version:
         description: App Store version (e.g. 1.0)
         required: true
-        default: '1.0'
+        default: '2.3'
 
 permissions:
   contents: read
@@ -52,6 +52,7 @@ jobs:
           npm run build
           npx cap add ios --packagemanager CocoaPods
           python3 tools/ios_setup.py
+          python3 tools/ads_audit.py
       - name: Import existing Apple Distribution identity and profile
         env:
           CERT: ${{ secrets.IOS_DIST_CERT_PEM }}
