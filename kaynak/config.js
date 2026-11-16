@@ -198,7 +198,7 @@ export const AD = {
 // Diğer FLIX oyunları (çapraz tanıtım: menü, mağaza, reklam kartı, dünyadaki panolar)
 export const PROMO = [
   { id: 'rush', name: 'FLIX RUSH', txt: 'Neon yörüngede kaç, rekor kır!', url: 'https://apps.apple.com/app/id6795291439', bg: 'linear-gradient(160deg,#2a0a6a,#ff2d9a)' },
-  { id: 'kickup', name: 'FLIX KICK UP', txt: 'FLIX’i düşürmeden sektir!', url: 'https://kaanimamoglu27.github.io/flix-kick-up/', bg: 'linear-gradient(160deg,#e22511,#7a0d05)' },
+  { id: 'f321', name: 'FLIX 3 2 1', txt: 'Futbol bilgini online düelloda göster!', url: 'https://apps.apple.com/tr/app/flix-3-2-1/id6811194863?l=tr', bg: 'linear-gradient(160deg,#0c2a5e,#d4190f)' },
 ];
 // Müşteri siparişleri: mavi / kırmızı / sarı FLIX ya da karışık. Tam istediğini alan %30 fazla öder.
 export const ORDERS = { mavi: { n: 'Mavi', c: '#2a80dc' }, kirmizi: { n: 'Kırmızı', c: '#e8301c' }, sari: { n: 'Sarı', c: '#ffc20e' }, mix: { n: 'Karışık', c: 'conic-gradient(#2a80dc 0 33%,#e8301c 0 66%,#ffc20e 0)' } };
