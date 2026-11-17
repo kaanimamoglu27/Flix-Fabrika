@@ -1,6 +1,6 @@
 # Flix Fabrika
 
-Flix Toys'un fabrika oyunu (sürüm 2.2, yatay). Hindi çiftliğinden FLIX üret, test et, paketle, sat; fabrikanı büyüt.
+Flix Toys'un fabrika oyunu (sürüm 2.5, yatay). Hindi çiftliğinden FLIX üret, test et, paketle, sat; fabrikanı büyüt.
 
 **Oyna:** https://kaanimamoglu27.github.io/Flix-Fabrika/
 
@@ -9,6 +9,13 @@ Flix Toys'un fabrika oyunu (sürüm 2.2, yatay). Hindi çiftliğinden FLIX üret
 - `app/` iOS uygulaması (Capacitor 8, com.flixtoys.fabrika)
 
 Not: 🧪 Endgame test modu yalnızca web'de (Pages/artifact) görünür; iOS uygulamasında tamamen kapalı (2.0.1).
+
+## 2.5 (2026-11-17): istasyon daireleri, takılan kutular, ayrıntılı Nasıl oynanır
+- **Kutular artık havada asılı kalmıyor, yığından kaymıyor.** Bir kutu bir yere uçarken (masa, tezgah, sandık) karakter ya da eleman onu alırsa eski hareketi sürüyordu ve kutu elin yanında, havada ya da yığının dışında kalıyordu. Her nesnenin artık tek bir hareketi var (`killTw`, `retarget`). Bot testi: eski sürümde 500 ölçümün 62'sinde yığın bozuk, yenisinde 0.
+- **Elde takılan kutular:** Geri dönüşüm açılmadan HATALI kutular alınabiliyordu, bırakacak yer olmadığı için elde kalıyordu. Artık geri dönüşüm yoksa alınmıyor.
+- **Her istasyonun yanında bir daire** (kamyon dahil). Alma ve bırakma sadece dairenin içindeyken olur (`ZIN = 1.25`), içindeyken daire parlar. Şov sahnesi de görünen dairesinde başlar.
+- **Nasıl oynanır** genişledi: daire kuralları, ham madde / ürün kuralı, DOLU, bırakmıyorsa ne yapmalı; ilerleyen 13 istasyonun kısa anlatımı (TR + EN). "DOLU" İngilizcede "FULL".
+- Not: `index.html` bu sürümde `kaynak/` derlenip içindeki oyun betiği değiştirilerek üretildi (fontlar repoda yok); `shell.html`'e eklenen CSS de aynı şekilde aktarıldı.
 
 ## 2.2 (2026-11-13): yatay oyun
 - Oyun artık yatay oynanır. Telefon dik tutulursa oyun kendini yataya döndürür (ARKANA'daki sistem); ters görünürse menüdeki "⟲ Ters mi? Çevir" butonu, ayrıca cihaz hareketiyle otomatik çevirme.
