@@ -190,17 +190,21 @@ function markReject(o) { o.userData.type = 'reject'; o.userData.ok = false; cons
 function markTested(o) { o.userData.ok = true; const s = new THREE.Mesh(GEO.sticker, TOYM.ok); s.position.set(0.28, 0.95, 0.32); o.add(s); }
 const H_OF = { corn: 0.34, feather: 0.17, base: 0.36, rubber: 0.3, toy: 1.2, top: 1.2, gift: 1.0, cash: 0.11, plush: 0.85, key: 0.4, reject: 1.2 };
 const hOf = (o) => H_OF[o.userData.type] || 0.3;
+const ALLP = [];
 class Pile {
-  constructor(x, z, type, max, cols = 2, rows = 2, gap = 0.75) { this.pos = new THREE.Vector3(x, 0, z); this.type = type; this.max = max; this.cols = cols; this.rows = rows; this.gap = gap; this.items = []; this.base = 0.05; this.zone = this.pos.clone(); }
+  constructor(x, z, type, max, cols = 2, rows = 2, gap = 0.75) { ALLP.push(this); this.pos = new THREE.Vector3(x, 0, z); this.type = type; this.max = max; this.cols = cols; this.rows = rows; this.gap = gap; this.items = []; this.base = 0.05; this.zone = this.pos.clone(); }
   slot(i) { const per = this.cols * this.rows, layer = Math.floor(i / per), k = i % per, cx = k % this.cols, cz = Math.floor(k / this.cols);
     return this.pos.clone().add(new THREE.Vector3((cx - (this.cols - 1) / 2) * this.gap, this.base + layer * H_OF[this.type], (cz - (this.rows - 1) / 2) * this.gap)); }
   get n() { return this.items.length; } full() { return this.items.length >= this.max; }
-  push(obj, from) { const p = this.slot(this.items.length); this.items.push(obj); scene.attach(obj); obj.rotation.set(0, 0, 0); obj.scale.setScalar(1); fly(obj, from || obj.position.clone(), p, 0.28); }
-  pop() { return this.items.pop(); }
-  take(pred) { for (let i = this.items.length - 1; i >= 0; i--) if (pred(this.items[i])) { const o = this.items.splice(i, 1)[0]; for (let k = i; k < this.items.length; k++) this.items[k].position.copy(this.slot(k)); return o; } return null; }
+  push(obj, from) { const p = this.slot(this.items.length); this.items.push(obj); killTw(obj); scene.attach(obj); obj.rotation.set(0, 0, 0); obj.scale.setScalar(1); fly(obj, from || obj.position.clone(), p, 0.28); }
+  pop() { const o = this.items.pop(); if (o) killTw(o); return o; }
+  take(pred) { for (let i = this.items.length - 1; i >= 0; i--) if (pred(this.items[i])) { const o = this.items.splice(i, 1)[0]; for (let k = i; k < this.items.length; k++) retarget(this.items[k], this.slot(k)); killTw(o); return o; } return null; }
 }
 const tweens = [];
-function fly(obj, from, to, dur, onEnd, arc = 1.2) { const tw = { obj, from: from.clone(), to: to.clone(), t: 0, dur, onEnd, arc }; tweens.push(tw); return tw; }
+// 2.5: one owner per object. An item taken while it was still flying kept its old tween, which wrote world coordinates into the carrier's local space: boxes floated beside the stack or hung in the air.
+function killTw(obj, scaleToo = true) { for (let i = tweens.length - 1; i >= 0; i--) { const tw = tweens[i]; if (tw.obj === obj && !tw.onEnd && (scaleToo || !tw.scale)) tweens.splice(i, 1); } }
+function retarget(obj, to) { const tw = tweens.find(q => q.obj === obj && !q.scale && !q.onEnd); if (tw) tw.to.copy(to); else obj.position.copy(to); }
+function fly(obj, from, to, dur, onEnd, arc = 1.2) { killTw(obj, false); const tw = { obj, from: from.clone(), to: to.clone(), t: 0, dur, onEnd, arc }; tweens.push(tw); return tw; }
 function popIn(obj) { tweens.push({ obj, t: 0, dur: 0.25, scale: true }); }
 const pops = [];
 const popMat = { ok: new THREE.SpriteMaterial({ map: tex(128, 128, (c) => { c.fillStyle = '#25a855'; c.beginPath(); c.arc(64, 64, 58, 0, 7); c.fill(); c.strokeStyle = '#fff'; c.lineWidth = 16; c.lineCap = 'round'; c.beginPath(); c.moveTo(34, 66); c.lineTo(56, 88); c.lineTo(94, 42); c.stroke(); }), transparent: true, depthTest: false }),
@@ -379,8 +383,11 @@ export function applyTiers() {
 function setBounds() { BOUNDS.x0 = has('bblok') ? -24.5 : has('depo') ? -11 : -6.3; BOUNDS.x1 = has('cblok') ? 39.5 : has('genis') ? 25.5 : has('bina') ? 12.6 : has('atolye') ? 10.7 : 10.3; BOUNDS.z0 = has('ciftlik0') ? farmZ() - 1 : has('bina') ? -7.3 : has('atolye') ? -4.9 : 6.6; NAV.dirty = true; }
 function zoneRing(x, z, col, txt) { const r = new THREE.Mesh(new THREE.RingGeometry(1.0, 1.25, 48), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.85, depthWrite: false })); r.rotation.x = -Math.PI / 2; r.position.set(x, 0.045, z); scene.add(r); floorText(txt, x, z);
   return { pos: new THREE.Vector3(x, 0, z), r: 1.2, ring: r }; }
-function markZone(pile, at, col = 0xffffff) { const p = at || pile.pos; const r = new THREE.Mesh(G('Ring', 0.95, 1.12, 40), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.34, depthWrite: false })); r.rotation.x = -Math.PI / 2; r.position.set(p.x, 0.04, p.z); scene.add(r); pile.zone = at ? at.clone() : pile.pos.clone(); pile.ring = r; ZR.push({ r, p: pile }); return r; }
-function inRing(x, z, txt1, txt2) { if (LNG === 'en' && txt2 === 'bırak') { txt2 = txt1; txt1 = 'bırak'; } const ring = new THREE.Mesh(new THREE.RingGeometry(1.0, 1.2, 40), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.34, depthWrite: false })); ring.rotation.x = -Math.PI / 2; ring.position.set(x, 0.04, z); scene.add(ring);
+// 2.5: every station has one visible area; picking up and dropping only work while you stand inside it (ZIN = ring's outer edge)
+const ZIN = 1.25;
+function zoneDisc(x, z, col) { const r = new THREE.Mesh(G('Ring', 1.02, ZIN, 48), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.5, depthWrite: false })); r.rotation.x = -Math.PI / 2; r.position.set(x, 0.04, z); scene.add(r); const d = new THREE.Mesh(new THREE.CircleGeometry(1.02, 40), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.1, depthWrite: false })); d.position.z = 0.001; r.add(d); r.userData.disc = d; return r; }
+function markZone(pile, at, col = 0xffffff) { const p = at || pile.pos; const r = zoneDisc(p.x, p.z, col); pile.zone = at ? at.clone() : pile.pos.clone(); pile.ring = r; ZR.push({ r, p: pile }); return r; }
+function inRing(x, z, txt1, txt2) { if (LNG === 'en' && txt2 === 'bırak') { txt2 = txt1; txt1 = 'bırak'; } const ring = zoneDisc(x, z, 0xffffff); ZR.push({ r: ring, p: { zone: new THREE.Vector3(x, 0, z) } });
   const lbl = tex(256, 96, (c, w) => { c.fillStyle = '#fff'; c.font = 'bold 30px R, sans-serif'; c.textAlign = 'center'; c.fillText(txt1, w / 2, 40); c.fillText(txt2, w / 2, 76); });
   const lm = add(new THREE.PlaneGeometry(1.4, 0.52), new THREE.MeshBasicMaterial({ map: lbl, transparent: true, depthWrite: false }), null, x, 0.05, z + 1.6); lm.rotation.x = -Math.PI / 2; lm.castShadow = false; }
 function buildAssembly(i, x, z) {
@@ -513,7 +520,7 @@ function buildTruck() {
   outl(g); outl(dock); const stars = starRow(g, -0.6, 0.6, -1.09); stars.rotation.y = Math.PI;
   const bub = document.createElement('div'); bub.className = 'bub truck'; WRAP.appendChild(bub);
   const cash = new Pile(24.3, 14.6, 'cash', 80, 2, 2, 0.7);
-  TR = { g, wheels, cont, load: [], state: 'dock', t: 0, idle: 0, zone: new THREE.Vector3(22.6, 0, 16.6), bub, cash, stars, x: 22.6 };
+  TR = { g, wheels, cont, load: [], state: 'dock', t: 0, idle: 0, zone: new THREE.Vector3(22.6, 0, 16.6), bub, cash, stars, x: 22.6 }; ZR.push({ r: zoneDisc(22.6, 16.6, 0xffc20e), p: TR });
   ZONES.truck = null;
 }
 const truckCap = () => 10 + lv('truck') * 4;
@@ -702,7 +709,7 @@ function stepShow(dt, T) { stepTrain(dt); if (MUS) MUS.spin.forEach((f, i) => f.
   if (!SG) return; SH.cd = Math.max(0, SH.cd - dt); if (SH.hypeT > 0) { SH.hypeT -= dt; if (SH.hypeT <= 0) SH.hype = 0; }
   SG.ring.ring.material.opacity = SH.cd > 0 ? 0.25 : 0.6 + Math.sin(T * 4) * 0.3;
   if (SH.leaveT > 0) { SH.leaveT -= dt; for (const c of SH.crowd) c.o.position.z += dt * 2.5; if (SH.leaveT <= 0) { SH.crowd.forEach(c => scene.remove(c.o)); SH.crowd = []; } }
-  if (!SH.on) { const inZ = Math.hypot(P.o.position.x - SG.zone.x, P.o.position.z - SG.zone.z) < 1.0, idle = Math.hypot(joy.x, joy.y) < 0.12;
+  if (!SH.on) { const inZ = Math.hypot(P.o.position.x - SG.ring.pos.x, P.o.position.z - SG.ring.pos.z) < ZIN, idle = Math.hypot(joy.x, joy.y) < 0.12;
     if (inZ && idle && !P.act) { if (SH.cd > 0) { SH.cdMsg -= dt; if (SH.cdMsg <= 0) { SH.cdMsg = 3; floatText(T_('Sahne hazırlanıyor') + ' ' + Math.ceil(SH.cd) + ' sn', '#ffd84a'); } } else { SH.still += dt; if (SH.still > 0.5) showStart(); } } else { SH.still = 0; if (!inZ) SH.cdMsg = 0; } return; }
   SH.v -= SH.g * dt; SH.y += SH.v * dt; SH.kick = Math.max(0, SH.kick - dt); P.o.rotation.y = 0;
   SH.ball.position.set(P.o.position.x, Math.max(0.1, SH.y), P.o.position.z + 0.5); SH.ball.rotation.y += dt * 6; const ok = SH.v < 0 && SH.y < 1.3 && SH.y > 0.22; SH.ball.scale.setScalar(ok ? 0.78 : 0.7);
@@ -1018,9 +1025,9 @@ export function floatText(txt, col = '#ffc20e') { const el = document.createElem
 export function setLook() { const pos = P.o.position.clone(), ry = P.o.rotation.y; scene.remove(H.g); H = makeHero(SV.cos.skin, SV.cos.acc, 0.78); H.g.position.copy(pos); H.g.rotation.y = ry; scene.add(H.g); H.g.add(P.hold); P.o = H.g; syncPatron(false); confetti(pos.clone().setY(1)); }
 export const capOf = () => 4 + lv('cap') + cosB().cap;
 const wcap = () => 2 + lv('wcap') + cosB().wc;
-function stackPush(obj) { const h = P.stack.reduce((a, o) => a + hOf(o), 0); P.stack.push(obj); const local = new THREE.Vector3(0, h / 0.78, 0); const from = obj.getWorldPosition(new THREE.Vector3()); P.hold.add(obj); obj.position.copy(P.hold.worldToLocal(from.clone())); obj.scale.setScalar(1 / 0.78); obj.rotation.set(0, 0, 0); tweens.push({ obj, from: obj.position.clone(), to: local, t: 0, dur: 0.22, arc: 0.8 }); }
-function stackPop(pred) { for (let i = P.stack.length - 1; i >= 0; i--) if (pred(P.stack[i])) { const o = P.stack.splice(i, 1)[0]; restack(); const w = o.getWorldPosition(new THREE.Vector3()); scene.add(o); o.position.copy(w); o.scale.setScalar(1); o.rotation.set(0, 0, 0); return o; } return null; }
-function restack() { let h = 0; for (const o of P.stack) { o.position.set(0, h / 0.78, 0); h += hOf(o); } }
+function stackPush(obj) { killTw(obj); const h = P.stack.reduce((a, o) => a + hOf(o), 0); P.stack.push(obj); const local = new THREE.Vector3(0, h / 0.78, 0); const from = obj.getWorldPosition(new THREE.Vector3()); P.hold.add(obj); obj.position.copy(P.hold.worldToLocal(from.clone())); obj.scale.setScalar(1 / 0.78); obj.rotation.set(0, 0, 0); tweens.push({ obj, from: obj.position.clone(), to: local, t: 0, dur: 0.22, arc: 0.8 }); }
+function stackPop(pred) { for (let i = P.stack.length - 1; i >= 0; i--) if (pred(P.stack[i])) { const o = P.stack.splice(i, 1)[0]; killTw(o); restack(); const w = o.getWorldPosition(new THREE.Vector3()); scene.add(o); o.position.copy(w); o.scale.setScalar(1); o.rotation.set(0, 0, 0); return o; } return null; }
+function restack() { let h = 0; const v = new THREE.Vector3(); for (const o of P.stack) { retarget(o, v.set(0, h / 0.78, 0)); h += hOf(o); } }
 
 // ---------------- unlock pads ----------------
 function padTex(p, paid) { return tex(256, 256, (c, w, h) => { c.fillStyle = 'rgba(255,255,255,.92)'; c.beginPath(); c.roundRect(8, 8, w - 16, h - 16, 36); c.fill(); c.strokeStyle = p.col ? COLS[p.col].f : p.big ? '#e22511' : '#0b2a5e'; c.lineWidth = 9; c.setLineDash([22, 14]); c.stroke(); c.setLineDash([]);
@@ -1188,7 +1195,7 @@ function stepFX(dt) { for (let i = FX.length - 1; i >= 0; i--) { const f = FX[i]
   if (f.t >= f.life) { scene.remove(f.m); FX.splice(i, 1); } } }
 // rings under piles light up while you stand in them
 const ZR = [];
-function stepRings(dt) { for (let i = ZR.length - 1; i >= 0; i--) { const z = ZR[i]; if (!z.r.parent) { ZR.splice(i, 1); continue; } const on = P && z.p.zone && Math.hypot(P.o.position.x - z.p.zone.x, P.o.position.z - z.p.zone.z) < 1.7; z.r.material.opacity += ((on ? 0.9 : 0.34) - z.r.material.opacity) * Math.min(1, dt * 8); z.r.scale.setScalar(1 + (on ? 0.06 : 0)); } }
+function stepRings(dt) { for (let i = ZR.length - 1; i >= 0; i--) { const z = ZR[i]; if (!z.r.parent) { ZR.splice(i, 1); continue; } const on = P && z.p.zone && Math.hypot(P.o.position.x - z.p.zone.x, P.o.position.z - z.p.zone.z) < ZIN; z.r.material.opacity += ((on ? 0.95 : 0.5) - z.r.material.opacity) * Math.min(1, dt * 8); if (z.r.userData.disc) z.r.userData.disc.material.opacity = on ? 0.32 : 0.1; z.r.scale.setScalar(1 + (on ? 0.05 : 0)); } }
 function confetti(p) { for (let i = 0; i < 40; i++) { const m = new THREE.Mesh(new THREE.PlaneGeometry(0.16, 0.24), new THREE.MeshBasicMaterial({ color: [0xe22511, 0xffc20e, 0x2a80dc, 0x2fa043, 0xffffff][i % 5], side: THREE.DoubleSide })); m.position.copy(p); scene.add(m); confettiBits.push({ m, v: new THREE.Vector3(rnd(-4, 4), rnd(6, 11), rnd(-4, 4)), r: new THREE.Vector3(rnd(-8, 8), rnd(-8, 8), 0), t: 0 }); } }
 const dust = []; const dustMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.6, depthWrite: false }), dustGeo = new THREE.SphereGeometry(0.14, 8, 6);
 export function setSound(on) { sound = on; SFX.enabled = on; try { localStorage.setItem('flix_fabrika_snd', on ? '1' : '0'); } catch {} if (on) SFX.unlock(); else SFX.setMusic(false); }
@@ -1214,7 +1221,7 @@ function stepTutorial() {
 let feT = 0, prT = 0;
 function nearRect(R, d) { const a = P.o.position, dx = Math.max(R[0] - a.x, 0, a.x - R[1]), dz = Math.max(R[2] - a.z, 0, a.z - R[3]); return Math.hypot(dx, dz) < d; }
 // pick up from a pile: its ring, or any side of its crate / machine
-function nearPile(p) { if (near(p.zone, 1.6)) return true; const R = p.rect || [p.pos.x - p.cols * p.gap / 2, p.pos.x + p.cols * p.gap / 2, p.pos.z - p.rows * p.gap / 2, p.pos.z + p.rows * p.gap / 2]; return nearRect(R, 1.15); }
+function nearPile(p) { return near(p.zone, ZIN); }
 function near(p, r) { const a = P.o.position; return Math.hypot(a.x - p.x, a.z - p.z) < r; }
 let zoneLock = null;
 function stepZones(T) {
@@ -1271,30 +1278,30 @@ const tested = (o) => isProd(o) && o.userData.ok;
 function interact() {
   const cap = capOf();
   for (const pile of allCash()) if (pile && near(pile.pos, 1.8) && pile.n) { for (let k = 0; k < 3 && pile.n; k++) { const o = pile.pop(); const v = o.userData.v || 5; fly(o, o.position, P.o.position.clone().add(new THREE.Vector3(0, 1.5, 0)), 0.25, () => { scene.remove(o); SV.money += v; bumpMoney(); }); } if (Math.random() < 0.5) fxBurst(P.o.position.clone().setY(1.8), 'coin', 2, 0.5); SFX.coin(); haptic(8); return; }
-  for (const A of asm) if (near(A.inZone, 1.5)) { // each table keeps up to 20 of each; it takes what it is shorter of first
+  for (const A of asm) if (near(A.inZone, ZIN)) { // each table keeps up to 20 of each; it takes what it is shorter of first
     const hf = P.stack.some(x => x.userData.type === 'feather') && A.inF.length < 20, hb = P.stack.some(x => x.userData.type === 'base') && A.inB < 20;
     const T = hf && hb ? (A.inF.length <= A.inB ? 'feather' : 'base') : hf ? 'feather' : hb ? 'base' : null; const o = T && stackPop(x => x.userData.type === T); if (o) { dropTo(A, o); SFX.drop(); return; } }
-  if (TM && near(TM.inZone, 1.5)) { const o = stackPop(x => x.userData.type === 'rubber'); if (o) { dropTop(o); SFX.drop(); return; } }
-  if (TS && near(TS.inZone, 1.5) && TS.q.length < 16) { const o = stackPop(untested); if (o) { dropTest(o); SFX.drop(); return; } }
-  if (BY && near(BY.inZone, 1.5) && BY.inV.length < 6) { const o = stackPop(paintable); if (o) { dropPaint(o); SFX.drop(); return; } }
-  if (GS && near(GS.inZone, 1.5) && GS.inV.length < 9) { const o = stackPop(x => x.userData.type === 'toy' && x.userData.ok); if (o) { dropGift(o); SFX.drop(); return; } }
-  if (CS && near(CS.zone, 1.4)) { const o = stackPop(x => x.userData.type === 'corn'); if (o) { fly(o, o.position, CS.tr.clone().setY(0.6), 0.3, () => scene.remove(o)); CS.feedT = Math.min(180, CS.feedT + 25); fxBurst(CS.tr.clone().setY(0.8), 'puff', 4, 0.6); floatText('🌽 +25 sn', '#ffd84a'); SFX.drop(); return; } }
+  if (TM && near(TM.inZone, ZIN)) { const o = stackPop(x => x.userData.type === 'rubber'); if (o) { dropTop(o); SFX.drop(); return; } }
+  if (TS && near(TS.inZone, ZIN) && TS.q.length < 16) { const o = stackPop(untested); if (o) { dropTest(o); SFX.drop(); return; } }
+  if (BY && near(BY.inZone, ZIN) && BY.inV.length < 6) { const o = stackPop(paintable); if (o) { dropPaint(o); SFX.drop(); return; } }
+  if (GS && near(GS.inZone, ZIN) && GS.inV.length < 9) { const o = stackPop(x => x.userData.type === 'toy' && x.userData.ok); if (o) { dropGift(o); SFX.drop(); return; } }
+  if (CS && near(CS.zone, ZIN)) { const o = stackPop(x => x.userData.type === 'corn'); if (o) { fly(o, o.position, CS.tr.clone().setY(0.6), 0.3, () => scene.remove(o)); CS.feedT = Math.min(180, CS.feedT + 25); fxBurst(CS.tr.clone().setY(0.8), 'puff', 4, 0.6); floatText('🌽 +25 sn', '#ffd84a'); SFX.drop(); return; } }
   if (P.act) return;
-  for (const C of K) if (near(C.zone, 1.7) && !C.pile.full()) { const u = stackPop(untested); if (u) { startTest(u, C); return; }
+  for (const C of K) if (near(C.zone, ZIN) && !C.pile.full()) { const u = stackPop(untested); if (u) { startTest(u, C); return; }
     const f = P.stack.find(o => o.userData.type === 'feather'), b = P.stack.find(o => o.userData.type === 'base'); if (f && b) { stackPop(o => o === f); stackPop(o => o === b); startBuild(f, b, C); return; } }
-  for (const C of K) if (near(C.zone, 1.7) && !C.pile.full()) { const o = stackPop(tested); if (o) { C.pile.push(o, o.position); SV.del = 1; SFX.drop(); return; } }
-  if (RC && near(RC.inZone, 1.5)) { const o = stackPop(x => x.userData.type === 'reject'); if (o) { dropRecycle(o); SFX.drop(); return; } }
-  if (PL && near(PL.inZone, 1.5) && PL.inF.length < 12) { const o = stackPop(x => x.userData.type === 'feather'); if (o) { dropPlush(o); SFX.drop(); return; } }
-  if (TR && TR.state === 'dock' && near(TR.zone, 1.8) && TR.load.length < truckCap()) { const o = stackPop(tested); if (o) { loadTruck(o); return; } }
+  for (const C of K) if (near(C.zone, ZIN) && !C.pile.full()) { const o = stackPop(tested); if (o) { C.pile.push(o, o.position); SV.del = 1; SFX.drop(); return; } }
+  if (RC && near(RC.inZone, ZIN)) { const o = stackPop(x => x.userData.type === 'reject'); if (o) { dropRecycle(o); SFX.drop(); return; } }
+  if (PL && near(PL.inZone, ZIN) && PL.inF.length < 12) { const o = stackPop(x => x.userData.type === 'feather'); if (o) { dropPlush(o); SFX.drop(); return; } }
+  if (TR && TR.state === 'dock' && near(TR.zone, ZIN) && TR.load.length < truckCap()) { const o = stackPop(tested); if (o) { loadTruck(o); return; } }
   if (P.stack.length >= cap) return;
   const hasProd = P.stack.some(isProd), hasRaw = P.stack.some(isRaw);
   if (!hasProd) for (const pile of [penPile, miniPile, farmPile, farmPile2, pressPile, pressPile2, rubberPile, cornPile]) if (pile && pile.n && nearPile(pile) && !(pile !== rubberPile && P.stack.filter(o => o.userData.type === pile.type).length >= Math.ceil(cap / 2))) { if (pile.type === 'feather') fxBurst(pile.pos.clone().setY(1.0), 'fluff', 2, 0.7); stackPush(pile.pop()); SFX.pick(); haptic(6); return; }
-  if (!hasRaw) for (const pile of asm.map(a => a.out).concat(TM ? [TM.out] : [], TS ? [TS.out, REJ] : [], GS ? [GS.out] : [], RC ? [RC.out] : [], PL ? [PL.out] : [], BY ? [BY.out] : [])) if (pile.n && nearPile(pile)) { stackPush(pile.pop()); SFX.pick(); haptic(6); return; }
+  if (!hasRaw) for (const pile of asm.map(a => a.out).concat(TM ? [TM.out] : [], TS ? [TS.out].concat(RC ? [REJ] : []) : [], GS ? [GS.out] : [], RC ? [RC.out] : [], PL ? [PL.out] : [], BY ? [BY.out] : [])) if (pile.n && nearPile(pile)) { stackPush(pile.pop()); SFX.pick(); haptic(6); return; }
 }
 // ---- the hero does the work by hand at the stand: build + box, then kick-test, then place it ----
 const handPos = () => P.o.position.clone().add(new THREE.Vector3(Math.sin(P.o.rotation.y) * 0.7, 1.15, Math.cos(P.o.rotation.y) * 0.7));
 function startBuild(f, b, C) { const hp = handPos(); fly(f, f.position, hp, 0.22); fly(b, b.position, hp.clone().setY(1.0), 0.22); P.act = { kind: 'build', f, b, col: f.userData.col, C, t: 0, dur: 0.85 * Math.pow(0.9, lv('mont')) * (bonusOn('uret') ? 0.6 : 1) }; SFX.drop(); }
-function startTest(o, C) { P.act = { kind: 'test', o, C, t: 0, kd: 0.34 * Math.pow(0.92, lv('test')) * (bonusOn('uret') ? 0.6 : 1), n: 0 }; o.scale.setScalar(0.75); }
+function startTest(o, C) { killTw(o); P.act = { kind: 'test', o, C, t: 0, kd: 0.34 * Math.pow(0.92, lv('test')) * (bonusOn('uret') ? 0.6 : 1), n: 0 }; o.scale.setScalar(0.75); }
 function stepAct(dt, T) { const A = P.act; if (!A) return; A.t += dt;
   if (A.kind === 'build') { const hp = handPos(); const hi = Math.floor(A.t / 0.15); if (A.t > 0.25 && hi !== A.h) { A.h = hi; fxBurst(hp, 'spark', 3, 0.55); } if (A.t > 0.25) { A.f.position.copy(hp).add(new THREE.Vector3(0, Math.sin(T * 30) * 0.05, 0)); A.b.position.copy(hp).setY(1.0); A.f.rotation.y += dt * 9; }
     if (A.t >= A.dur) { scene.remove(A.f); scene.remove(A.b); const toy = makeItem('toy', A.col); scene.add(toy); toy.position.copy(hp); popIn(toy); SFX.pop(); fxBurst(hp, 'puff', 6, 1); fxBurst(hp, 'star', 4, 0.8); floatText('Kuruldu · kutulandı', '#ffffff'); startTest(toy, A.C); } }
@@ -1304,8 +1311,8 @@ function stepAct(dt, T) { const A = P.act; if (!A) return; A.t += dt;
 function actPose(T) { const A = P.act; if (A.kind === 'show') { const k = Math.min(1, SH.kick * 5); pose(H, { kickL: 0, kickR: k * 1.3, kneeL: 0.2, kneeR: 0.2 + k * 0.4, armL: [0.4, 0.9, -0.4], armR: [0.4, 0.9, -0.4] }); H.body.position.y = 0; return; } if (A.kind === 'build') { const h = Math.sin(T * 22); pose(H, { kickL: 0, kickR: 0, kneeL: 0.25, kneeR: 0.25, armL: [-1.3 + h * 0.35, 0.2, -0.3], armR: [-1.3 - h * 0.35, 0.2, -0.3] }); H.body.position.y = Math.abs(h) * 0.03; }
   else { const e = (A.t / A.kd) % 1, k = Math.max(0, 1 - Math.min(e, 1 - e) * 6); pose(H, { kickL: 0, kickR: k * 1.3, kneeL: 0.2, kneeR: 0.2 + k * 0.4, armL: [0.3, 0.6, -0.4], armR: [0.3, 0.6, -0.4] }); H.body.position.y = 0; } }
 // ---- worker AI: picks the most useful job each round ----
-function wTake(W, o) { W.stack.push(o); W.hold.attach(o); o.scale.setScalar(1 / 0.68); o.rotation.set(0, 0, 0); let h = 0; W.stack.forEach(s => { s.position.set(0, h / 0.68, 0); h += hOf(s); }); }
-function wDrop(W) { const o = W.stack.pop(); const w = o.getWorldPosition(new THREE.Vector3()); scene.add(o); o.position.copy(w); o.scale.setScalar(1); o.rotation.set(0, 0, 0); return o; }
+function wTake(W, o) { killTw(o); W.stack.push(o); W.hold.attach(o); o.scale.setScalar(1 / 0.68); o.rotation.set(0, 0, 0); let h = 0; W.stack.forEach(s => { s.position.set(0, h / 0.68, 0); h += hOf(s); }); }
+function wDrop(W) { const o = W.stack.pop(); killTw(o); const w = o.getWorldPosition(new THREE.Vector3()); scene.add(o); o.position.copy(w); o.scale.setScalar(1); o.rotation.set(0, 0, 0); return o; }
 // ---------- navigation grid + A* so workers walk around machines like the player would ----------
 const NAV = { cs: 0.5, x0: 0, z0: 0, nx: 0, nz: 0, g: null, dirty: true };
 function navBuild() { const cs = NAV.cs; NAV.x0 = BOUNDS.x0; NAV.z0 = BOUNDS.z0; NAV.nx = Math.ceil((BOUNDS.x1 - BOUNDS.x0) / cs) + 1; NAV.nz = Math.ceil((BOUNDS.z1 - BOUNDS.z0) / cs) + 1; NAV.g = new Uint8Array(NAV.nx * NAV.nz); const r = 0.5;
@@ -1444,7 +1451,7 @@ function tick(dt, T) {
   { const st = 1.0; const sx = Math.round(camLook.x / st) * st, sz = Math.round(camLook.z / st) * st; if (sx !== sunAt.x || sz !== sunAt.z) { sunAt.set(sx, 0, sz); sun.position.copy(sunAt).add(new THREE.Vector3(-9, 22, 8)); sun.target.position.copy(sunAt); } }
   shownMoney += (SV.money - shownMoney) * Math.min(1, dt * 10); $('#money b').textContent = fmt(Math.round(shownMoney)); moneyBump = Math.max(0, moneyBump - dt * 4); $('#money').style.transform = `scale(${1 + Math.sin(moneyBump * Math.PI) * 0.12})`;
   const v = P.o.position.clone().add(new THREE.Vector3(0, 2.9 + P.stack.reduce((a, o) => a + hOf(o), 0) * 0.78, 0)).project(camera);
-  P.lbl.style.transform = `translate(${(v.x + 1) / 2 * VW}px,${(1 - v.y) / 2 * VH}px) translate(-50%,-100%)`; P.lbl.textContent = P.stack.length >= capOf() ? 'DOLU' : ''; P.lbl.style.opacity = P.stack.length >= capOf() ? 1 : 0;
+  P.lbl.style.transform = `translate(${(v.x + 1) / 2 * VW}px,${(1 - v.y) / 2 * VH}px) translate(-50%,-100%)`; P.lbl.textContent = P.stack.length >= capOf() ? T_('DOLU') : ''; P.lbl.style.opacity = P.stack.length >= capOf() ? 1 : 0;
   if (pRing) { pRing.position.set(P.o.position.x, 0.06, P.o.position.z); pRing.material.opacity = 0.55 + Math.sin(T * 3) * 0.2; }
   for (let i = floats.length - 1; i >= 0; i--) { const f = floats[i]; f.t += dt; const fv = P.o.position.clone().add(new THREE.Vector3(0, 3.2 + f.t * 1.5, 0)).project(camera); f.el.style.transform = `translate(${(fv.x + 1) / 2 * VW}px,${(1 - fv.y) / 2 * VH}px) translate(-50%,-100%)`; f.el.style.opacity = Math.max(0, 1 - f.t / 1.3); if (f.t > 1.3) { f.el.remove(); floats.splice(i, 1); } }
   hudT -= dt; if (hudT <= 0) { hudT = 0.5; refreshHUD(); }
@@ -1493,5 +1500,5 @@ function resolve(x, z) { x = Math.max(BOUNDS.x0 + 0.5, Math.min(BOUNDS.x1 - 0.5,
     boostNow: () => { bxT = 0; }, get bx() { return BX && { id: BX.id, x: BX.x, z: BX.z }; },
     get tgt() { const s = TUT[SV.tut]; if (!s) return null; const v = s.tgt(); return [v.x, v.z]; },
     sim: (k) => { SIM = k; }, person: (x, z, kid) => { const o = personMesh(kid); o.position.set(x, 0, z); scene.add(o); }, testQ: (n) => { for (let i = 0; i < n; i++) TS.q.push(makeItem('toy', 'mavi', 8)); syncTestQ(); }, truckLoad: (n) => { for (let i = 0; i < n; i++) TR.load.push(8); },
-    get by() { return BY && [BY.inV.length, BY.out.n, TS && TS.out.n, workers.filter(w => w.task && w.task.dst === 'paint').length, workers.length]; }, get drn() { return DRN && [DRN.state, DRN.cash.n, +DRN.d.position.y.toFixed(1)]; }, gold: () => { gfT = 0; }, get gf() { return GF && [GF.o.position.x, GF.o.position.z]; }, get stackN() { return P.stack.length; }, get pxz() { return [+P.o.position.x.toFixed(2), +P.o.position.z.toFixed(2)]; }, dropAll: () => { P.stack.forEach(o => scene.remove(o)); P.stack.length = 0; }, get cust() { return customers.length; }, get rob() { return ROB.map(R => [R.st, R.load.length]); }, get ct() { return SV.ct; }, get dpr() { return dpr; }, get ords() { return customers.map(c => c.ord); }, get cdbg() { return K.map(C => C.cust[0] && [C.cust[0].state, +C.cust[0].o.position.x.toFixed(1), +C.cust[0].o.position.z.toFixed(1), C.cust[0].ord, C.cust[0].got, C.cust[0].want, +C.cust[0].pat.toFixed(1), C.x]); }, get turkeys() { return turkeys.length; }, get zone() { return zoneLock; }, zoom: (f) => camOff.multiplyScalar(f), look: (s, a) => { SV.cos.skin = s; SV.cos.acc = a; setLook(); } };
+    get by() { return BY && [BY.inV.length, BY.out.n, TS && TS.out.n, workers.filter(w => w.task && w.task.dst === 'paint').length, workers.length]; }, get drn() { return DRN && [DRN.state, DRN.cash.n, +DRN.d.position.y.toFixed(1)]; }, gold: () => { gfT = 0; }, get gf() { return GF && [GF.o.position.x, GF.o.position.z]; }, get stackN() { return P.stack.length; }, zones: () => ZR.filter(z => z.r.parent).map(z => { const c = z.p.zone; const bl = colliders.filter(q => c.x > q.x0 - 0.3 && c.x < q.x1 + 0.3 && c.z > q.z0 - 0.3 && c.z < q.z1 + 0.3).length; const pa = navPath(P.o.position.x, P.o.position.z, c.x, c.z); return [+c.x.toFixed(1), +c.z.toFixed(1), bl, pa ? 1 : 0]; }), reach: (x, z) => { P.o.position.set(x, 0, z); for (let i = 0; i < 4; i++) tick(0.016, 0); return [+P.o.position.x.toFixed(2), +P.o.position.z.toFixed(2)]; }, audit: () => { const own = new Set(); ALLP.forEach(q => q.items.forEach(o => own.add(o))); P.stack.forEach(o => own.add(o)); workers.forEach(w => w.stack.forEach(o => own.add(o))); tweens.forEach(t => own.add(t.obj)); if (P.act) [P.act.o, P.act.f, P.act.b].forEach(o => o && own.add(o)); if (SH.ball) own.add(SH.ball); [...asm, GS, BY, PL].forEach(X => X && X.bufObjs && X.bufObjs.forEach(o => own.add(o))); if (TS && TS.qObjs) TS.qObjs.forEach(o => own.add(o)); if (TS) TS.kids.forEach(S => S.cur && own.add(S.cur)); const orphan = []; for (const o of scene.children) if (o.userData && o.userData.type && !own.has(o)) orphan.push([o.userData.type, +o.position.x.toFixed(1), +o.position.y.toFixed(1), +o.position.z.toFixed(1)]); let h = 0, bad = 0; for (const o of P.stack) { const busy = tweens.some(t => t.obj === o); if (!busy && Math.abs(o.position.y - h / 0.78) + Math.abs(o.position.x) + Math.abs(o.position.z) > 0.05) bad++; h += hOf(o); } let wbad = 0; workers.forEach(w => { let hh = 0; w.stack.forEach(o => { if (!tweens.some(t => t.obj === o) && Math.abs(o.position.y - hh / 0.68) + Math.abs(o.position.x) + Math.abs(o.position.z) > 0.05) wbad++; hh += hOf(o); }); }); const dup = tweens.filter((t, i) => tweens.findIndex(u => u.obj === t.obj && !u.scale) !== i && !t.scale).length; return { orphan, bad, wbad, dup, st: P.stack.map(o => o.userData.type), rc: !!RC }; }, get pxz() { return [+P.o.position.x.toFixed(2), +P.o.position.z.toFixed(2)]; }, dropAll: () => { P.stack.forEach(o => scene.remove(o)); P.stack.length = 0; }, get cust() { return customers.length; }, get rob() { return ROB.map(R => [R.st, R.load.length]); }, get ct() { return SV.ct; }, get dpr() { return dpr; }, get ords() { return customers.map(c => c.ord); }, get cdbg() { return K.map(C => C.cust[0] && [C.cust[0].state, +C.cust[0].o.position.x.toFixed(1), +C.cust[0].o.position.z.toFixed(1), C.cust[0].ord, C.cust[0].got, C.cust[0].want, +C.cust[0].pat.toFixed(1), C.x]); }, get turkeys() { return turkeys.length; }, get zone() { return zoneLock; }, zoom: (f) => camOff.multiplyScalar(f), look: (s, a) => { SV.cos.skin = s; SV.cos.acc = a; setLook(); } };
 })();
