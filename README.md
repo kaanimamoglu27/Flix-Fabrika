@@ -11,6 +11,7 @@ Flix Toys'un fabrika oyunu (sürüm 2.5, yatay). Hindi çiftliğinden FLIX üret
 Not: 🧪 Endgame test modu yalnızca web'de (Pages/artifact) görünür; iOS uygulamasında tamamen kapalı (2.0.1).
 
 ## 2.5 (2026-11-17): istasyon daireleri, takılan kutular, ayrıntılı Nasıl oynanır
+- **Satın alma hatası düzeldi:** ödeme ekranı açılır açılmaz kalıcı ürün (Başlangıç, Reklamsız, VIP) veriliyordu; ödemeyi kapatsan bile kalıyordu. `native-bridge.js` artık sadece gerçek, onaylanmış ya da bitmiş işlemlere bakıyor (`realOwned`).
 - **Kutular artık havada asılı kalmıyor, yığından kaymıyor.** Bir kutu bir yere uçarken (masa, tezgah, sandık) karakter ya da eleman onu alırsa eski hareketi sürüyordu ve kutu elin yanında, havada ya da yığının dışında kalıyordu. Her nesnenin artık tek bir hareketi var (`killTw`, `retarget`). Bot testi: eski sürümde 500 ölçümün 62'sinde yığın bozuk, yenisinde 0.
 - **Elde takılan kutular:** Geri dönüşüm açılmadan HATALI kutular alınabiliyordu, bırakacak yer olmadığı için elde kalıyordu. Artık geri dönüşüm yoksa alınmıyor.
 - **Her istasyonun yanında bir daire** (kamyon dahil). Alma ve bırakma sadece dairenin içindeyken olur (`ZIN = 1.25`), içindeyken daire parlar. Şov sahnesi de görünen dairesinde başlar.
