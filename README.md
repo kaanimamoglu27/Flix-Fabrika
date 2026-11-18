@@ -10,6 +10,12 @@ Flix Toys'un fabrika oyunu (sürüm 2.5, yatay). Hindi çiftliğinden FLIX üret
 
 Not: 🧪 Endgame test modu yalnızca web'de (Pages/artifact) görünür; iOS uygulamasında tamamen kapalı (2.0.1).
 
+## 2.6 (2026-11-18): 6 dil, varsayılan Türkçe, reklam ipucu
+- **Diller:** Türkçe (varsayılan, cihaz dili ne olursa olsun), English (oyunun kendi İngilizcesi, `Qs` sözlüğü), Français, Deutsch, Español, العربية. Ayarlar'daki "Dil: Türkçe → English" düğmesi yerine 6 dilli seçici; ana menüdeki 🌐 düğmesi Ayarlar'ı açar. Daha önce İngilizce seçmiş oyuncunun dili korunur.
+- Çeviri tablosu `i18n/ceviri_*.tsv` (Türkçe anahtar, İngilizcesi `Qs`'ten). Yeni metin: tabloya satır ekle, `python3 i18n/apply_i18n.py`, sonra `cd app && python3 tools/build_www.py`.
+- Nasıl oynanır görselleri Türkçe dışındaki dillerde İngilizce görsellerden gelir.
+- Nasıl oynanır'ın İpuçları kutusuna reklam kuralı eklendi (ödüllü reklamlar isteğe bağlı, ara reklam en fazla 4 dakikada bir, Reklamsız ve VIP'te yok).
+
 ## 2.5 (2026-11-17): istasyon daireleri, takılan kutular, ayrıntılı Nasıl oynanır
 - **Satın alma hatası düzeldi:** ödeme ekranı açılır açılmaz kalıcı ürün (Başlangıç, Reklamsız, VIP) veriliyordu; ödemeyi kapatsan bile kalıyordu. `native-bridge.js` artık sadece gerçek, onaylanmış ya da bitmiş işlemlere bakıyor (`realOwned`).
 - **Kutular artık havada asılı kalmıyor, yığından kaymıyor.** Bir kutu bir yere uçarken (masa, tezgah, sandık) karakter ya da eleman onu alırsa eski hareketi sürüyordu ve kutu elin yanında, havada ya da yığının dışında kalıyordu. Her nesnenin artık tek bir hareketi var (`killTw`, `retarget`). Bot testi: eski sürümde 500 ölçümün 62'sinde yığın bozuk, yenisinde 0.

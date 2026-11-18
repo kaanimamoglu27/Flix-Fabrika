@@ -1,0 +1,259 @@
+Patron	Boss	Patron	Chef	Jefe	المدير
+Fabrika	Factory	Usine	Fabrik	Fábrica	المصنع
+Eleman	Crew	Personnel	Team	Personal	الفريق
+Kostüm	Outfit	Tenue	Outfit	Traje	الزي
+Aksesuar	Accessory	Accessoire	Accessoire	Accesorio	إكسسوار
+Zemin	Floor	Sol	Boden	Suelo	الأرضية
+E. şapka	Crew hat	Chapeau équipe	Team-Hut	Gorro equipo	قبعة الفريق
+GELİŞTİR	UPGRADE	AMÉLIORER	VERBESSERN	MEJORAR	طوّر
+ELEMAN	CREW	PERSONNEL	TEAM	PERSONAL	الفريق
+DOLAP	WARDROBE	GARDE-ROBE	SCHRANK	ARMARIO	الخزانة
+Çırak	Apprentice	Apprenti	Lehrling	Aprendiz	متدرب
+Usta	Master	Maître	Meister	Maestro	معلّم
+Şef	Chief	Chef	Chef	Jefe	رئيس
+Efsane	Legend	Légende	Legende	Leyenda	أسطورة
+ÇIRAK	APPRENTICE	APPRENTI	LEHRLING	APRENDIZ	متدرب
+USTA	MASTER	MAÎTRE	MEISTER	MAESTRO	معلّم
+ŞEF	CHIEF	CHEF	CHEF	JEFE	رئيس
+PATRON	BOSS	PATRON	CHEF	JEFE	المدير
+EFSANE	LEGEND	LÉGENDE	LEGENDE	LEYENDA	أسطورة
+hız	speed	vitesse	Tempo	velocidad	سرعة
+taşıma	carry	transport	Tragen	carga	حمل
+kâr	profit	profit	Gewinn	beneficio	ربح
+kupa	trophies	trophées	Pokale	trofeos	كؤوس
+sipariş	orders	commandes	Bestellungen	pedidos	طلبات
+parça	items	objets	Teile	piezas	قطع
+eleman taşıma	crew carry	transport du personnel	Team-Tragkraft	carga del personal	حمل الفريق
+% eleman hızı	% crew speed	% vitesse du personnel	% Team-Tempo	% velocidad del personal	% سرعة الفريق
+2. hindi	2nd turkey	2e dinde	2. Truthahn	2.º pavo	الديك الثاني
+3. hindi	3rd turkey	3e dinde	3. Truthahn	3.er pavo	الديك الثالث
+Atölye avlusu	Workshop yard	Cour de l'atelier	Werkhof	Patio del taller	ساحة الورشة
+Depo kanadı	Storage wing	Aile de stockage	Lagerflügel	Ala de almacén	جناح المخزن
+Büyük pres	Big press	Grande presse	Große Presse	Gran prensa	المكبس الكبير
+Fabrika binası	Factory building	Bâtiment de l'usine	Fabrikgebäude	Edificio de la fábrica	مبنى المصنع
+Hindi çiftliği	Turkey farm	Ferme aux dindes	Truthahnhof	Granja de pavos	مزرعة الديوك
+Oyun parkı	Playground	Aire de jeux	Spielplatz	Parque	الملعب
+Ofis	Office	Bureau	Büro	Oficina	المكتب
+Mavi hindi	Blue turkey	Dinde bleue	Blauer Truthahn	Pavo azul	ديك أزرق
+İşe alım	Hiring	Recrutement	Personal	Contratación	التوظيف
+2. Montaj	2nd Assembly	2e montage	2. Montage	2.º montaje	التجميع 2
+Yeşil hindi	Green turkey	Dinde verte	Grüner Truthahn	Pavo verde	ديك أخضر
+2. Kasa	2nd Register	2e caisse	2. Kasse	2.ª caja	الصندوق 2
+Tüy bandı	Feather belt	Tapis à plumes	Federband	Cinta de plumas	سير الريش
+Yeni salon	New hall	Nouvelle salle	Neue Halle	Nave nueva	قاعة جديدة
+Sarı hindi	Yellow turkey	Dinde jaune	Gelber Truthahn	Pavo amarillo	ديك أصفر
+3. Kasa	3rd Register	3e caisse	3. Kasse	3.ª caja	الصندوق 3
+Hindi sürüsü	Turkey flock	Troupeau de dindes	Truthahnherde	Bandada de pavos	سرب الديوك
+Tüy toplayıcı	Feather collector	Collecteur de plumes	Federsammler	Recolector de plumas	جامع الريش
+3. Montaj	3rd Assembly	3e montage	3. Montage	3.er montaje	التجميع 3
+Konveyör	Conveyor	Convoyeur	Förderband	Transportadora	الناقل
+Kırmızı hindi	Red turkey	Dinde rouge	Roter Truthahn	Pavo rojo	ديك أحمر
+Büyük çiftlik	Big farm	Grande ferme	Großer Hof	Gran granja	المزرعة الكبيرة
+4. Kasa	4th Register	4e caisse	4. Kasse	4.ª caja	الصندوق 4
+B Blok	Block B	Bloc B	Block B	Bloque B	المبنى B
+4. Montaj	4th Assembly	4e montage	4. Montage	4.º montaje	التجميع 4
+2. Pres	2nd Press	2e presse	2. Presse	2.ª prensa	المكبس 2
+Mor hindi	Purple turkey	Dinde violette	Lila Truthahn	Pavo morado	ديك بنفسجي
+5. Kasa	5th Register	5e caisse	5. Kasse	5.ª caja	الصندوق 5
+Robot garajı	Robot garage	Garage à robots	Robotergarage	Garaje de robots	مرآب الروبوتات
+Altın hindi	Golden turkey	Dinde dorée	Goldener Truthahn	Pavo dorado	ديك ذهبي
+Tüy 2 katı	Feathers x2	Plumes x2	Federn x2	Plumas x2	الريش x2
+Avlu büyür · montaj yeri açılır	Yard grows · assembly spot opens	La cour s'agrandit · poste de montage ouvert	Hof wächst · Montageplatz öffnet	El patio crece · se abre un puesto de montaje	تتوسع الساحة · يُفتح مكان تجميع
+Robot kol FLIX kurar	Robot arm builds FLIX	Le bras robot monte les FLIX	Roboterarm baut FLIX	El brazo robot monta FLIX	الذراع الآلية تجمّع FLIX
+Kümeste 3 hindi	3 turkeys in the coop	3 dindes dans le poulailler	3 Truthähne im Stall	3 pavos en el corral	3 ديوك في القن
+Alan sola büyür · dolap	Area grows left · wardrobe	La zone s'agrandit à gauche · garde-robe	Fläche wächst nach links · Schrank	El área crece a la izquierda · armario	تتوسع المساحة يسارًا · خزانة
+Taban üretimi hızlanır	Faster base production	Production de socles plus rapide	Schnellere Sockelproduktion	Producción de bases más rápida	إنتاج قواعد أسرع
+Duvarlar yükselir · çiftlik kapısı	Walls go up · farm gate	Les murs montent · portail de la ferme	Mauern wachsen · Hoftor	Se levantan muros · puerta de la granja	ترتفع الجدران · بوابة المزرعة
+4 hindi · tüy sandığı	4 turkeys · feather crate	4 dindes · caisse à plumes	4 Truthähne · Federkiste	4 pavos · cajón de plumas	4 ديوك · صندوق ريش
+3 çocuk FLIX test eder	3 kids test FLIX	3 enfants testent les FLIX	3 Kinder testen FLIX	3 niños prueban FLIX	3 أطفال يختبرون FLIX
+Sektirme şovu: kalabalık para atar	Kick-up show: the crowd throws money	Show de jongles : la foule lance de l'argent	Kick-Show: das Publikum wirft Geld	Show de toques: el público lanza dinero	عرض الركلات: الجمهور يرمي المال
+Geliştirmeler açılır	Upgrades open	Les améliorations s'ouvrent	Upgrades öffnen sich	Se abren las mejoras	تُفتح التطويرات
+FLIX değeri 5 → 8	FLIX value 5 → 8	Valeur FLIX 5 → 8	FLIX-Wert 5 → 8	Valor FLIX 5 → 8	قيمة FLIX 5 ← 8
+Hindileri besle: tüy 2 kat hızlı	Feed turkeys: feathers 2x faster	Nourris les dindes : plumes 2x plus vite	Truthähne füttern: Federn 2x schneller	Alimenta a los pavos: plumas 2x más rápido	أطعم الديوك: الريش أسرع مرتين
+Eleman al, iş yürüsün	Hire crew, keep it moving	Recrute, que ça tourne	Team einstellen, damit es läuft	Contrata personal para que todo funcione	وظّف عمالًا لتستمر الأعمال
+Üretim 2 katı	Production x2	Production x2	Produktion x2	Producción x2	الإنتاج x2
+Hatalılar anahtarlık olur	Faulty ones become keychains	Les défectueuses deviennent des porte-clés	Kaputte werden Schlüsselanhänger	Los defectuosos se vuelven llaveros	المعيبة تصبح سلاسل مفاتيح
+FLIX değeri	FLIX value	Valeur FLIX	FLIX-Wert	Valor FLIX	قيمة FLIX
+Müşteri 2 katı	Customers x2	Clients x2	Kunden x2	Clientes x2	الزبائن x2
+Tüy ve taban masaya akar	Feathers and bases flow to the table	Plumes et socles arrivent à la table	Federn und Sockel fließen zum Tisch	Plumas y bases llegan a la mesa	الريش والقواعد تتدفق إلى الطاولة
++%10 satış · +1 müşteri	+10% sales · +1 customer	+10 % de ventes · +1 client	+10 % Verkauf · +1 Kunde	+10% ventas · +1 cliente	+10% مبيعات · +1 زبون
+Toplu satış 1,5 kat	Bulk sale x1.5	Vente en gros x1,5	Großverkauf x1,5	Venta al por mayor x1,5	بيع بالجملة x1.5
+Yeni ürün: FLIX Top	New product: FLIX Ball	Nouveau produit : FLIX Balle	Neues Produkt: FLIX-Ball	Producto nuevo: Pelota FLIX	منتج جديد: كرة FLIX
+Müşteri +%50	Customers +50%	Clients +50 %	Kunden +50 %	Clientes +50%	الزبائن +50%
+Müşteri +%33	Customers +33%	Clients +33 %	Kunden +33 %	Clientes +33%	الزبائن +33%
+Müşteri +%25	Customers +25%	Clients +25 %	Kunden +25 %	Clientes +25%	الزبائن +25%
++6 hindi · 2 kat tüy	+6 turkeys · 2x feathers	+6 dindes · plumes x2	+6 Truthähne · 2x Federn	+6 pavos · plumas x2	+6 ديوك · ريش مضاعف
+Yeni ürün: Peluş FLIX	New product: Plush FLIX	Nouveau produit : FLIX en peluche	Neues Produkt: Plüsch-FLIX	Producto nuevo: FLIX de peluche	منتج جديد: دمية FLIX
+2 robot tüy toplar	2 robots collect feathers	2 robots ramassent les plumes	2 Roboter sammeln Federn	2 robots recogen plumas	روبوتان يجمعان الريش
+Üretim +%50	Production +50%	Production +50 %	Produktion +50 %	Producción +50%	الإنتاج +50%
+Üretim +%33	Production +33%	Production +33 %	Produktion +33 %	Producción +33%	الإنتاج +33%
+Montaj kendi teste gider	Assembly goes to testing by itself	Le montage part seul au test	Montage geht von selbst zum Test	El montaje va solo a la prueba	التجميع يذهب للاختبار وحده
++8 hindi · 2. tüy sandığı	+8 turkeys · 2nd feather crate	+8 dindes · 2e caisse à plumes	+8 Truthähne · 2. Federkiste	+8 pavos · 2.º cajón de plumas	+8 ديوك · صندوق ريش ثانٍ
+3 FLIX = 1,6 kat set	3 FLIX = x1.6 set	3 FLIX = coffret x1,6	3 FLIX = Set x1,6	3 FLIX = set x1,6	3 FLIX = طقم x1.6
+Fabrika sola büyür	Factory grows left	L'usine s'agrandit à gauche	Fabrik wächst nach links	La fábrica crece a la izquierda	يتوسع المصنع يسارًا
+Taban üretimi 2 katı	Base production x2	Production de socles x2	Sockelproduktion x2	Producción de bases x2	إنتاج القواعد x2
++3 robot · hızlı toplama	+3 robots · faster collecting	+3 robots · collecte plus rapide	+3 Roboter · schnelleres Sammeln	+3 robots · recogida más rápida	+3 روبوتات · جمع أسرع
+Yürüme hızı	Walk speed	Vitesse de marche	Lauftempo	Velocidad al caminar	سرعة المشي
+Taşıma kapasitesi	Carry capacity	Capacité de transport	Tragkapazität	Capacidad de carga	سعة الحمل
+Kâr	Profit	Profit	Gewinn	Beneficio	الربح
+Pres hızı	Press speed	Vitesse de la presse	Pressentempo	Velocidad de prensa	سرعة المكبس
+Montaj hızı	Assembly speed	Vitesse de montage	Montagetempo	Velocidad de montaje	سرعة التجميع
+Kümes verimi	Coop output	Rendement du poulailler	Stallertrag	Rendimiento del corral	إنتاج القن
+Tüy bandı hızı	Feather belt speed	Vitesse du tapis à plumes	Federband-Tempo	Velocidad de la cinta	سرعة سير الريش
+Oyun parkı (3 çocuk)	Playground (3 kids)	Aire de jeux (3 enfants)	Spielplatz (3 Kinder)	Parque (3 niños)	الملعب (3 أطفال)
+Tezgâh rafı	Counter shelf	Étagère du comptoir	Thekenregal	Estante del mostrador	رف المنضدة
+Toplayıcı robot	Collector robot	Robot collecteur	Sammelroboter	Robot recolector	الروبوت الجامع
+Reklam & tanıtım	Ads & promo	Pub & promo	Werbung & Promo	Publicidad y promoción	إعلانات وترويج
+Sipariş primi	Order bonus	Prime de commande	Bestellbonus	Prima de pedidos	مكافأة الطلبات
+Eleman hızı	Crew speed	Vitesse du personnel	Team-Tempo	Velocidad del personal	سرعة الفريق
+Eleman kapasitesi	Crew capacity	Capacité du personnel	Team-Kapazität	Capacidad del personal	سعة الفريق
+Taşıyıcı	Carrier	Porteur	Träger	Cargador	حمّال
+Kasiyer	Cashier	Caissier	Kassierer	Cajero	أمين الصندوق
+Tüy ve taban taşır, FLIX’leri tezgâha dizer	Carries feathers and bases, stacks FLIX on the counter	Porte plumes et socles, range les FLIX au comptoir	Trägt Federn und Sockel, stapelt FLIX auf die Theke	Lleva plumas y bases, coloca FLIX en el mostrador	يحمل الريش والقواعد ويرتب FLIX على المنضدة
+Her kasaya bir kasiyer: satış 3 kat hızlı	One cashier per register: sales 3x faster	Un caissier par caisse : ventes 3x plus rapides	Ein Kassierer pro Kasse: Verkauf 3x schneller	Un cajero por caja: ventas 3x más rápidas	أمين لكل صندوق: البيع أسرع 3 مرات
+sn/taban	s/base	s/socle	s/Sockel	s/base	ث/قاعدة
+sn/FLIX	s/FLIX	s/FLIX	s/FLIX	s/FLIX	ث/FLIX
+sn/parça	s/item	s/objet	s/Teil	s/pieza	ث/قطعة
+sn yol	s trip	s de trajet	s Weg	s de viaje	ث رحلة
+kutu	boxes	boîtes	Boxen	cajas	صناديق
+tüy	feathers	plumes	Federn	plumas	ريش
+satış	sales	ventes	Verkäufe	ventas	مبيعات
+müşteri	customers	clients	Kunden	clientes	زبائن
+sipariş ödülü	order reward	récompense de commande	Bestellbelohnung	premio de pedido	مكافأة الطلب
+hatalı	faulty	défectueuses	defekt	defectuosos	معيب
+2x Kazanç	2x Earnings	Gains x2	2x Einnahmen	Ganancias x2	أرباح x2
+Tüm satışlar 2 kat	All sales x2	Toutes les ventes x2	Alle Verkäufe x2	Todas las ventas x2	كل المبيعات x2
+Turbo Hız	Turbo Speed	Vitesse turbo	Turbotempo	Velocidad Turbo	سرعة توربو
+Sen ve elemanlar 1,5 kat hızlı	You and crew 1.5x faster	Toi et ton équipe x1,5 plus rapides	Du und dein Team 1,5x schneller	Tú y tu personal 1,5x más rápidos	أنت وفريقك أسرع 1.5 مرة
+Çift Üretim	Double Production	Production double	Doppelte Produktion	Producción Doble	إنتاج مضاعف
+Kümes, pres ve montaj 2 kat hızlı	Coop, press and assembly 2x faster	Poulailler, presse et montage 2x plus rapides	Stall, Presse und Montage 2x schneller	Corral, prensa y montaje 2x más rápidos	القن والمكبس والتجميع أسرع مرتين
+Müşteri Akını	Customer Rush	Ruée de clients	Kundenansturm	Avalancha de Clientes	تدفق الزبائن
+Müşteriler 2 kat sık gelir, daha çok alır	Customers come 2x as often and buy more	Les clients viennent 2x plus souvent et achètent plus	Kunden kommen doppelt so oft und kaufen mehr	Los clientes vienen el doble y compran más	يأتي الزبائن بضعف التكرار ويشترون أكثر
+Para Mıknatısı	Money Magnet	Aimant à argent	Geldmagnet	Imán de Dinero	مغناطيس المال
+Paralar kendiliğinden cebine gelir	Cash flies into your pocket	L'argent arrive tout seul dans ta poche	Geld fliegt von selbst in deine Tasche	El dinero vuela solo a tu bolsillo	يأتي المال إلى جيبك تلقائيًا
+dakika	minutes	minutes	Minuten	minutos	دقيقة
+100 Elmas	100 Gems	100 gemmes	100 Edelsteine	100 gemas	100 جوهرة
+Başlangıç Paketi	Starter Pack	Pack de départ	Starterpaket	Pack de Inicio	حزمة البداية
+150 elmas + ₺2.000 + Altın FLIX kostümü	150 gems + ₺2,000 + Golden FLIX outfit	150 gemmes + ₺2 000 + tenue FLIX dorée	150 Edelsteine + ₺2.000 + Goldenes FLIX-Outfit	150 gemas + ₺2.000 + traje FLIX dorado	150 جوهرة + ₺2,000 + زي FLIX الذهبي
+Reklamsız	No Ads	Sans pub	Werbefrei	Sin anuncios	بلا إعلانات
+Ara reklamlar kalkar, ödüllü reklamlar isteğe bağlı kalır	Removes interstitials, rewarded ads stay optional	Supprime les pubs intermédiaires, les pubs récompensées restent facultatives	Entfernt Zwischenwerbung, belohnte Werbung bleibt freiwillig	Quita los anuncios intermedios; los de premio siguen siendo opcionales	يزيل الإعلانات البينية، وتبقى الإعلانات بمكافأة اختيارية
+VIP Fabrika	VIP Factory	Usine VIP	VIP-Fabrik	Fábrica VIP	مصنع VIP
+Tüm satışlar kalıcı 2 kat + reklamsız	All sales permanently x2 + no ads	Toutes les ventes x2 pour toujours + sans pub	Alle Verkäufe dauerhaft x2 + werbefrei	Todas las ventas x2 para siempre + sin anuncios	كل المبيعات x2 للأبد + بلا إعلانات
+Neon yörüngede kaç, rekor kır!	Dodge in the neon orbit, set a record!	Esquive dans l'orbite néon, bats ton record !	Weich im Neon-Orbit aus, stell einen Rekord auf!	¡Esquiva en la órbita de neón y bate tu récord!	راوغ في المدار النيوني واكسر الرقم!
+FLIX’i düşürmeden sektir!	Keep the FLIX up!	Fais rebondir la FLIX sans la laisser tomber !	Halte den FLIX in der Luft!	¡Toca el FLIX sin que caiga!	أبقِ FLIX في الهواء!
+Futbol bilgini online düelloda göster!	Prove your football knowledge in online duels!	Montre tes connaissances foot en duel en ligne !	Zeig dein Fußballwissen im Online-Duell!	¡Demuestra lo que sabes de fútbol en duelos online!	أظهر معرفتك بكرة القدم في مبارزات عبر الإنترنت!
+Doğal	Natural	Naturel	Natur	Natural	طبيعي
+Mavi	Blue	Bleu	Blau	Azul	أزرق
+Yeşil	Green	Vert	Grün	Verde	أخضر
+Sarı	Yellow	Jaune	Gelb	Amarillo	أصفر
+Kırmızı	Red	Rouge	Rot	Rojo	أحمر
+Mor	Purple	Violet	Lila	Morado	بنفسجي
+Altın	Golden	Doré	Golden	Dorado	ذهبي
+Karışık	Mixed	Mélangé	Gemischt	Mixto	مختلط
+Karışık renkler	Mixed colours	Couleurs mélangées	Gemischte Farben	Colores mixtos	ألوان مختلطة
+Altın FLIX	Golden FLIX	FLIX dorée	Goldener FLIX	FLIX Dorado	FLIX الذهبي
+Kırmızı FLIX	Red FLIX	FLIX rouge	Roter FLIX	FLIX Rojo	FLIX الأحمر
+FLIX kırmızısı	FLIX red	Rouge FLIX	FLIX-Rot	Rojo FLIX	أحمر FLIX
+FLIX sarı-mavi	FLIX yellow-blue	FLIX jaune-bleu	FLIX gelb-blau	FLIX amarillo y azul	FLIX أصفر وأزرق
+Ejder Yeşili	Dragon Green	Vert dragon	Drachengrün	Verde Dragón	أخضر التنين
+Gece Altını	Night Gold	Or de nuit	Nachtgold	Oro Nocturno	ذهب الليل
+Gökkuşağı	Rainbow	Arc-en-ciel	Regenbogen	Arcoíris	قوس قزح
+Gün Batımı	Sunset	Coucher de soleil	Sonnenuntergang	Atardecer	الغروب
+Türkiye Özel	Türkiye Special	Spécial Turquie	Türkei-Spezial	Especial Turquía	إصدار تركيا
+Zümrüt	Emerald	Émeraude	Smaragd	Esmeralda	زمردي
+Buz Mavisi	Ice Blue	Bleu glacier	Eisblau	Azul Hielo	أزرق جليدي
+Galaksi	Galaxy	Galaxie	Galaxie	Galaxia	المجرة
+Gece mavisi	Night blue	Bleu nuit	Nachtblau	Azul noche	أزرق ليلي
+Kar Tanesi	Snowflake	Flocon	Schneeflocke	Copo de Nieve	ندفة ثلج
+Kiraz	Cherry	Cerise	Kirsche	Cereza	كرز
+Lav FLIX	Lava FLIX	FLIX lave	Lava-FLIX	FLIX Lava	FLIX الحمم
+Neon Pembe	Neon Pink	Rose néon	Neonpink	Rosa Neón	وردي نيون
+Okyanus	Ocean	Océan	Ozean	Océano	المحيط
+Turkuaz	Turquoise	Turquoise	Türkis	Turquesa	فيروزي
+Uzay	Space	Espace	Weltraum	Espacio	الفضاء
+Aksesuarsız	No accessory	Sans accessoire	Ohne Accessoire	Sin accesorio	بلا إكسسوار
+Altın taç	Golden crown	Couronne d'or	Goldene Krone	Corona de oro	تاج ذهبي
+FLIX şapkası	FLIX cap	Casquette FLIX	FLIX-Kappe	Gorra FLIX	قبعة FLIX
+Güneş gözlüğü	Sunglasses	Lunettes de soleil	Sonnenbrille	Gafas de sol	نظارة شمسية
+Işık halesi	Halo	Auréole	Heiligenschein	Aureola	هالة ضوء
+Kovboy şapkası	Cowboy hat	Chapeau de cow-boy	Cowboyhut	Sombrero vaquero	قبعة راعي بقر
+Kulaklık	Headphones	Casque audio	Kopfhörer	Auriculares	سماعات
+Kışlık bere	Winter beanie	Bonnet d'hiver	Wintermütze	Gorro de invierno	قبعة شتوية
+Süper maske	Super mask	Super masque	Supermaske	Súper máscara	قناع خارق
+Taraftar atkısı	Fan scarf	Écharpe de supporter	Fanschal	Bufanda de hincha	وشاح المشجع
+Tüy kanatlar	Feather wings	Ailes de plumes	Federflügel	Alas de plumas	أجنحة ريش
+Yıldız anten	Star antenna	Antenne étoile	Sternantenne	Antena estrella	هوائي النجمة
+Kahraman pelerini	Hero cape	Cape de héros	Heldenumhang	Capa de héroe	عباءة البطل
+Ahşap parke	Wood parquet	Parquet bois	Holzparkett	Parqué de madera	باركيه خشبي
+Fabrika betonu	Factory concrete	Béton d'usine	Fabrikbeton	Hormigón de fábrica	خرسانة المصنع
+Kırmızı karo	Red tiles	Carrelage rouge	Rote Fliesen	Baldosas rojas	بلاط أحمر
+Krem karo	Cream tiles	Carrelage crème	Cremefliesen	Baldosas crema	بلاط كريمي
+Mermer	Marble	Marbre	Marmor	Mármol	رخام
+Nane karo	Mint tiles	Carrelage menthe	Mintfliesen	Baldosas menta	بلاط نعناعي
+Saha çimi	Pitch grass	Pelouse de stade	Rasen	Césped de campo	عشب الملعب
+Satranç	Chess	Échiquier	Schach	Ajedrez	شطرنج
+Altın ekip	Golden crew	Équipe dorée	Goldenes Team	Equipo dorado	الفريق الذهبي
+Galaksi ekip	Galaxy crew	Équipe galaxie	Galaxie-Team	Equipo galaxia	فريق المجرة
+Robot ekip	Robot crew	Équipe robot	Roboter-Team	Equipo robot	فريق الروبوت
+Turkuaz ekip	Turquoise crew	Équipe turquoise	Türkis-Team	Equipo turquesa	الفريق الفيروزي
+Mavi tulum	Blue overalls	Salopette bleue	Blauer Overall	Mono azul	بدلة زرقاء
+Yeşil yelek	Green vest	Gilet vert	Grüne Weste	Chaleco verde	سترة خضراء
+Usta bareti	Hard hat	Casque de chantier	Bauhelm	Casco de obra	خوذة عمل
+Şapkasız	No hat	Sans chapeau	Ohne Hut	Sin gorro	بلا قبعة
+ATÖLYE	WORKSHOP	ATELIER	WERKSTATT	TALLER	الورشة
+FABRİKA	FACTORY	USINE	FABRIK	FÁBRICA	المصنع
+KÜMES	COOP	POULAILLER	STALL	CORRAL	القن
+MİNİ MAKİNE	MINI MACHINE	MINI MACHINE	MINIMASCHINE	MINI MÁQUINA	آلة صغيرة
+DEPO	STORAGE	STOCKAGE	LAGER	ALMACÉN	المخزن
+MONTAJ	ASSEMBLY	MONTAGE	MONTAGE	MONTAJE	التجميع
+FLIX SATIŞ	FLIX SHOP	VENTE FLIX	FLIX-VERKAUF	VENTA FLIX	بيع FLIX
+SATIŞ	SHOP	VENTE	VERKAUF	VENTA	البيع
+OFİS	OFFICE	BUREAU	BÜRO	OFICINA	المكتب
+İŞE ALIM	HIRING	RECRUTEMENT	PERSONAL	CONTRATACIÓN	التوظيف
+GERİ DÖNÜŞÜM	RECYCLING	RECYCLAGE	RECYCLING	RECICLAJE	إعادة التدوير
+HEDİYE PAKETİ	GIFT PACK	EMBALLAGE CADEAU	GESCHENKPAKET	PAQUETE REGALO	تغليف الهدايا
+KAUÇUK	RUBBER	CAOUTCHOUC	GUMMI	CAUCHO	المطاط
+PELUŞ ATÖLYESİ	PLUSH WORKSHOP	ATELIER PELUCHE	PLÜSCHWERKSTATT	TALLER DE PELUCHES	ورشة الدمى
+OYUNCAKÇILARA SEVKİYAT	SHIPPING TO TOY SHOPS	LIVRAISON AUX MAGASINS	VERSAND AN SPIELZEUGLÄDEN	ENVÍO A JUGUETERÍAS	الشحن لمتاجر الألعاب
+SEVKİYAT	SHIPPING	LIVRAISON	VERSAND	ENVÍO	الشحن
+PRES	PRESS	PRESSE	PRESSE	PRENSA	المكبس
+ROBOT GARAJI	ROBOT GARAGE	GARAGE À ROBOTS	ROBOTERGARAGE	GARAJE DE ROBOTS	مرآب الروبوتات
+YAKINDA: YENİ SALON	SOON: NEW HALL	BIENTÔT : NOUVELLE SALLE	BALD: NEUE HALLE	PRONTO: NAVE NUEVA	قريبًا: قاعة جديدة
+YENİ SALON	NEW HALL	NOUVELLE SALLE	NEUE HALLE	NAVE NUEVA	قاعة جديدة
+ÇİFTLİK YAKINDA	FARM SOON	FERME BIENTÔT	HOF BALD	GRANJA PRONTO	المزرعة قريبًا
+SEKTİRME ŞOVU	KICK-UP SHOW	SHOW DE JONGLES	KICK-SHOW	SHOW DE TOQUES	عرض الركلات
+ŞOV	SHOW	SHOW	SHOW	SHOW	العرض
+MISIR	CORN	MAÏS	MAIS	MAÍZ	ذرة
+YEM	FEED	NOURRITURE	FUTTER	COMIDA	علف
+HATALI	FAULTY	DÉFECTUEUX	DEFEKT	DEFECTUOSO	معيب
+B BLOK	BLOCK B	BLOC B	BLOCK B	BLOQUE B	المبنى B
+tüy + taban	feather + base	plume + socle	Feder + Sockel	pluma + base	ريش + قاعدة
+bırak	drop	dépose	ablegen	suelta	ضع
+test için	to test	à tester	zum Testen	para probar	للاختبار
+test edilmiş	tested	testé	getestet	probado	مختبر
+FLIX bırak	drop FLIX	déposer FLIX	FLIX ablegen	soltar FLIX	ضع FLIX
+kauçuk	rubber	caoutchouc	Gummi	caucho	مطاط
+GELİR ↑	INCOME ↑	REVENU ↑	EINNAHMEN ↑	INGRESOS ↑	الدخل ↑
+Fabrika Sv	Factory Lv	Niv. usine	Fabrik-Lv	Nv fábrica	مستوى المصنع
+Sv	Lv	Niv.	Lv	Nv	م
+sn	s	s	s	s	ث
+dk	min	min	Min.	min	د
+Sahne	Stage	Scène	Bühne	Escenario	المسرح
+⟲ Ters mi? Çevir	⟲ Upside down? Flip	⟲ À l'envers ? Retourner	⟲ Verkehrt? Drehen	⟲ ¿Al revés? Girar	⟲ مقلوبة؟ اقلبها
+BOYA ATÖLYESİ	PAINT SHOP	ATELIER PEINTURE	LACKIEREREI	TALLER DE PINTURA	ورشة الطلاء
+Test edilmiş FLIX boyanır: 1,5 kat değer	Tested FLIX get painted: 1.5x value	Les FLIX testées sont peintes : valeur x1,5	Getestete FLIX werden lackiert: 1,5-facher Wert	Los FLIX probados se pintan: valor x1,5	تُطلى FLIX المختبرة: قيمة 1.5 ضعف
+KARGO DRONU	CARGO DRONE	DRONE CARGO	FRACHTDROHNE	DRON DE CARGA	طائرة الشحن
+FLIX toplayıp 1,3 kat fiyata satar	Collects FLIX and sells them at 1.3x	Ramasse les FLIX et les vend x1,3	Sammelt FLIX und verkauft sie zum 1,3-fachen	Recoge FLIX y los vende a x1,3	يجمع FLIX ويبيعها بـ1.3 ضعف
+Altın tüy belirdi! Işığı bul.	A golden feather appeared! Find the light.	Une plume dorée est apparue ! Trouve la lumière.	Eine goldene Feder ist aufgetaucht! Finde das Licht.	¡Ha aparecido una pluma dorada! Busca la luz.	ظهرت ريشة ذهبية! ابحث عن الضوء.
+Altın tüy	Golden feather	Plume dorée	Goldene Feder	Pluma dorada	ريشة ذهبية
+Nasıl?	Help	Aide	Hilfe	Ayuda	مساعدة
+Nasıl oynanır	How to play	Comment jouer	So wird gespielt	Cómo jugar	طريقة اللعب
+Senin	Owned	À toi	Deins	Tuyo	لك
+Giyili	Worn	Porté	Angezogen	Puesto	مرتدى
+Yasal Bilgiler	Legal	Mentions légales	Rechtliches	Información legal	المعلومات القانونية
+Hakkında	About	À propos	Über	Acerca de	حول
+kârı	profit	profit	Gewinn	beneficio	ربح
+satış kârı	sales profit	profit des ventes	Verkaufsgewinn	beneficio de ventas	ربح المبيعات
+Dil	Language	Langue	Sprache	Idioma	اللغة
+Ofis	Office	Bureau	Büro	Oficina	المكتب
+Ücretsiz	Free	Gratuit	Gratis	Gratis	مجاني
