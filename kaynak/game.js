@@ -1471,7 +1471,8 @@ function resolve(x, z) { x = Math.max(BOUNDS.x0 + 0.5, Math.min(BOUNDS.x1 - 0.5,
   initUI();
   camLook.set(P.o.position.x * 0.85, 0, P.o.position.z - 1.5); camGoal.copy(camLook); camera.position.copy(camLook).add(camOff); requestAnimationFrame(frame); document.body.classList.add('ready');
   offlinePopup();
-  window.__fb = { cfg: () => ({ PADS, COS, BONUS, COLS, UPS, SUPS, STAFF, TUT }), iconShot: (v = 'A', S = 1024) => { const sc = new THREE.Scene(); sc.environment = scene.environment; sc.environmentIntensity = 0.5;
+  // test/bot hooks (setMoney etc.): never in the App Store build, unless the page is opened with ?debug
+  if (!IS_NATIVE || /[?&]debug\b/.test(location.search)) window.__fb = { sfx: () => SFX.stats(), cfg: () => ({ PADS, COS, BONUS, COLS, UPS, SUPS, STAFF, TUT }), iconShot: (v = 'A', S = 1024) => { const sc = new THREE.Scene(); sc.environment = scene.environment; sc.environmentIntensity = 0.5;
       const cv = document.createElement('canvas'); cv.width = cv.height = 1024; const x = cv.getContext('2d'); const bg = { A: ['#ff5a2a', '#e22511', '#8a0c05'], B: ['#ffd23a', '#ff8a1a', '#e22511'], C: ['#5ab8ff', '#1d5aa8', '#0b2a5e'] }[v];
       const gr = x.createRadialGradient(512, 560, 40, 512, 540, 760); gr.addColorStop(0, bg[0]); gr.addColorStop(0.45, bg[1]); gr.addColorStop(1, bg[2]); x.fillStyle = gr; x.fillRect(0, 0, 1024, 1024);
       x.save(); x.translate(512, 560); for (let i = 0; i < 24; i++) { x.rotate(Math.PI / 12); x.fillStyle = 'rgba(255,255,255,.08)'; x.beginPath(); x.moveTo(0, 0); x.lineTo(900, -110); x.lineTo(900, 110); x.fill(); } x.restore();

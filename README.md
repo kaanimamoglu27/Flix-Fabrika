@@ -1,6 +1,6 @@
 # Flix Fabrika
 
-Flix Toys'un fabrika oyunu (sürüm 2.5, yatay). Hindi çiftliğinden FLIX üret, test et, paketle, sat; fabrikanı büyüt.
+Flix Toys'un fabrika oyunu (sürüm 2.6, yatay). Hindi çiftliğinden FLIX üret, test et, paketle, sat; fabrikanı büyüt.
 
 **Oyna:** https://kaanimamoglu27.github.io/Flix-Fabrika/
 
@@ -9,6 +9,13 @@ Flix Toys'un fabrika oyunu (sürüm 2.5, yatay). Hindi çiftliğinden FLIX üret
 - `app/` iOS uygulaması (Capacitor 8, com.flixtoys.fabrika)
 
 Not: 🧪 Endgame test modu yalnızca web'de (Pages/artifact) görünür; iOS uygulamasında tamamen kapalı (2.0.1).
+
+## 2.6 (2026-11-18): ses belleği, küçük ekran düzeni, mağaza fiyatları
+- **Ses belleği:** her ses yeni ses düğümleri açıyor, biten sesler bağlı kalıyordu (80 oyun dakikasında ~60 bin kaynak, ~113 bin kazanç düğümü; bellek 1,2 GB'a çıkıyor, hızlandırılmış testler çöküyordu). Artık biten ses kendini söker (`onended` → `disconnect`), aynı sesten en fazla 3 tane birlikte çalar, aynı karede iki kez istenen ses bir kez çalar, gürültü tek ortak tampondan okunur, uygulama arkadayken müzik nota biriktirmez (`kaynak/sfx.js`). Bot ölçümü (80 oyun dakikası, ses açık): bağlı düğüm sayısı 70-130 arasında sabit (eskiden 60. dakikada 82 bin), açılan kaynak ~4.600.
+- **Test kancaları uygulamada yok:** `window.__fb` (`setMoney` dahil) yalnızca web'de ya da adres `?debug` ile açılınca tanımlanır. Web botu aynı çalışır.
+- **Küçük yatay ekran (568x320):** görev balonu ve mesajlar artık para sütunu ile sipariş kartının arasında kalır, gerekirse alt satıra iner (İngilizcede kartın altına giriyordu). Telefon dik tutulurken "⟲ Ters mi? Çevir" sol alta alındı, "Fabrika Sv" yazısının üstüne binmiyor.
+- **Mağaza fiyatları:** uygulamada App Store fiyatı gelene kadar "…" görünür, örnek ₺ fiyatı hiç gösterilmez. Web İngilizcede fiyat yerine "DEMO" yazar (Türkçe web'de örnek ₺ fiyatı durur).
+- Not: `index.html` yine `kaynak/` derlenip oyun betiği değiştirilerek üretildi, `shell.html`'deki CSS değişikliği elle aktarıldı; `app/www/index.html` = `python3 app/tools/build_www.py`.
 
 ## 2.5 (2026-11-17): istasyon daireleri, takılan kutular, ayrıntılı Nasıl oynanır
 - **Satın alma hatası düzeldi:** ödeme ekranı açılır açılmaz kalıcı ürün (Başlangıç, Reklamsız, VIP) veriliyordu; ödemeyi kapatsan bile kalıyordu. `native-bridge.js` artık sadece gerçek, onaylanmış ya da bitmiş işlemlere bakıyor (`realOwned`).

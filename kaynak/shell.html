@@ -152,14 +152,16 @@ body.panel #ct{opacity:0}
 /* ===== 2.2 yatay oyun: telefon dik tutulursa oyun 90° döner; yatay yerleşim ===== */
 #wrap{position:fixed;left:0;top:0;width:100vw;height:100vh;transform-origin:0 0;overflow:hidden;touch-action:none}
 #bFlip{position:fixed;left:50%;top:8px;transform:translateX(-50%);display:none;z-index:60;border-radius:999px;background:#fff;color:var(--navy);font-weight:800;padding:7px 16px;font-size:13px;box-shadow:0 3px 0 rgba(0,0,0,.25)}
-html.rot body.menu #bFlip{display:block}html.rot body.panel #bFlip{display:none}
+html.rot body.menu #bFlip{display:block;left:var(--sx);top:auto;bottom:8px;transform:none}html.rot body.panel #bFlip{display:none}
 html.rot{--st:6px;--sb:6px}
 html.land{--sx:max(22px,env(safe-area-inset-left,0px));--sy:max(22px,env(safe-area-inset-right,0px))}
 html.rot.land{--sx:38px;--sy:38px}
 html.land #money,html.land #gems,html.land #lvl,html.land #pat,html.land #bon{left:var(--sx)}
 html.land #money{top:calc(var(--st) + 8px)}html.land #gems{top:calc(var(--st) + 50px)}html.land #lvl{top:calc(var(--st) + 84px)}html.land #pat{top:calc(var(--st) + 114px)}html.land #bon{top:calc(var(--st) + 144px)}
 html.land #ct{right:var(--sy);top:calc(var(--st) + 8px)}html.land #vipTag{right:var(--sy);top:calc(var(--st) + 92px)}
-html.land #goal{top:calc(var(--st) + 10px)}html.land #toast{top:calc(var(--st) + 56px)}
+html.land #goal{top:calc(var(--st) + 10px);padding:6px 12px}html.land #toast{top:calc(var(--st) + 62px)}
+/* 2.6: the task pill and messages stay in the gap between the money column and the order card (568 wide: they ran under the card) */
+html.land #goal,html.land #toast{max-width:max(140px,calc(var(--lw,100vw) - var(--sx) - var(--sy) - 384px));white-space:normal;line-height:1.15;text-align:center}html.land body.menu #toast{top:50%;max-width:calc(var(--lw,100vw) * .9)}
 html.land .fab{right:var(--sy)}html.land #menuB{right:calc(var(--sy) + 7px)}
 html.land #shopB{bottom:calc(var(--sb) + 16px)}html.land #boostB{bottom:calc(var(--sb) + 92px)}html.land #menuB{bottom:calc(var(--sb) + 168px)}
 html.land .fab{width:62px;height:62px}

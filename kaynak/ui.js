@@ -45,7 +45,8 @@ function grant(id, txn) {
   if (window.FlixAds && (SV.noads || SV.vip)) window.FlixAds.setAdsRemoved(true);
   SFX.milestone(); save(); refreshHUD(); if (cur === 'shop') render();
 }
-const priceOf = (p) => (window.FlixNative && window.FlixNative.price(p.id)) || p.price;
+// App: only the App Store's own price is shown ("…" until StoreKit answers), never the sample ₺ price. Web has no payments: TR shows the sample price, EN a neutral demo label.
+const priceOf = (p) => NATIVE ? ((window.FlixNative && window.FlixNative.price(p.id)) || '…') : LANG === 'en' ? 'DEMO' : p.price;
 async function buy(p) {
   if (NATIVE && window.FlixNative) { const r = await window.FlixNative.buy(p.id); if (r === 'pending') toast('Onay bekleniyor, gelince eklenecek'); else if (!r) toast('Satın alma tamamlanmadı'); return; }
   // web: gerçek ödeme yok, açıkça demo
